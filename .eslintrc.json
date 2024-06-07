@@ -1,7 +1,6 @@
 {
     "env": {
-        "browser": true,
-        "es2021": true
+        "es6": true
     },
     "extends": [
         "next/core-web-vitals",
@@ -13,6 +12,36 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "plugins": ["react"],
-    "rules": { "prettier/prettier": ["error", { "endOfLine": "auto" }] }
+    "plugins": ["simple-import-sort", "import", "react"],
+    "rules": {
+        "prettier/prettier": [
+            "error",
+            {
+                "endOfLine": "auto"
+            }
+        ],
+        "import/order": [
+            "warn",
+            {
+                "alphabetize": { "order": "asc", "caseInsensitive": true },
+                "pathGroups": [
+                    {
+                        "pattern": "@/common/**",
+                        "group": "external",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "@/modules/**",
+                        "group": "external",
+                        "position": "after"
+                    }
+                ],
+                "newlines-between": "always"
+            }
+        ],
+        "simple-import-sort/exports": "error",
+        "import/first": "error",
+        "import/newline-after-import": "error",
+        "import/no-duplicates": "error"
+    }
 }
