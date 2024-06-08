@@ -1,6 +1,20 @@
 import puppeteer, { Browser } from 'puppeteer';
 import prisma from '../../common/lib/prisma';
 
+interface TotoResult {
+    drawNumber: number;
+    drawDate: number;
+    winningNum: number[];
+    additionalNum: number;
+    winningPool: TotoWinningPool[];
+}
+
+interface TotoWinningPool {
+    group: string;
+    prize: number;
+    winners: number;
+}
+
 export default async function totoScrape(browser: Browser) {
     const page = await browser.newPage();
     const response = await page.goto('http://www.singaporepools.com.sg/en/product/Pages/toto_results.aspx')
