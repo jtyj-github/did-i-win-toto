@@ -1,16 +1,37 @@
-import puppeteer from 'puppeteer';
+import puppeteer, { Browser } from 'puppeteer';
+import prisma from '../../common/lib/prisma';
 
-async function scrape(url: string) {
-    const browser = await puppeteer.launch();
+export default async function totoScrape(browser: Browser) {
     const page = await browser.newPage();
-    await page.goto(url);
+    const response = await page.goto('http://www.singaporepools.com.sg/en/product/Pages/toto_results.aspx')
+        .catch(async (error: Error) => {
+            console.error('Problem with scraping Toto results:', error);
+        }
+    );
 
-    // Perform scraping operations here
-    // For example, you can extract data using page.evaluate()
+    if (!response) {
+        return [];
+    }
 
-    await browser.close();
-}
+    const results = await page.evaluate(() => {
+        const items = [...document.querySelectorAll('.tables-wrap')];
+        return items.map(item => {
+            // Toto Draw Information
+            const drawNumber = Number(item.querySelectorAll('.drawNumber').textContent.trim().split(' ')[2]);
+            const rawDrawDate = item.querySelector('.drawDate').textContent.trim();
+            const drawDate = Date.parse(`${rawDrawDate} GMT+0800`);
+            const winningNum = [
+                Number(item.querySelector('.win1').textContent.trim()),
+                Number(item.querySelector('.win2').textContent.trim()),
+                Number(item.querySelector('.win3').textContent.trim()),
+                Number(item.querySelector('.win4').textContent.trim()),
+                Number(item.querySelector('.win5').textContent.trim()),
+                Number(item.querySelector('.win6').textContent.trim()),
+            ];
+            const additionalNum = Number(item.querySelector('.additional').textContent.trim()),
 
-// Usage example
-const url = 'https://example.com';
-scrape(url);
+            //Extract Winning Pool info
+        });
+        
+    })
+};
