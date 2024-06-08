@@ -1,8 +1,8 @@
 {
     "env": {
-        "browser": true,
-        "es2021": true
+        "es6": true
     },
+    "parser": "@typescript-eslint/parser",
     "extends": [
         "next/core-web-vitals",
         "eslint:recommended",
@@ -10,9 +10,43 @@
         "plugin:prettier/recommended"
     ],
     "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
+        "project": "./tsconfig.json",
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
     },
-    "plugins": ["react"],
-    "rules": {"prettier/prettier" :["error", { "endOfLine": "auto" }]}
+    "plugins": ["simple-import-sort", "import", "@typescript-eslint", "react"],
+    "rules": {
+        "prettier/prettier": [
+            "error",
+            {
+                "endOfLine": "auto"
+            }
+        ],
+        "import/order": [
+            "warn",
+            {
+                "alphabetize": { "order": "asc", "caseInsensitive": true },
+                "pathGroups": [
+                    {
+                        "pattern": "@/common/**",
+                        "group": "external",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "@/modules/**",
+                        "group": "external",
+                        "position": "after"
+                    }
+                ],
+                "newlines-between": "always"
+            }
+        ],
+        "simple-import-sort/exports": "error",
+        "import/first": "error",
+        "import/newline-after-import": "error",
+        "import/no-duplicates": "error",
+        "@typescript-eslint/no-unused-vars": "warn"
+    }
 }
