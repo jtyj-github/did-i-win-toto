@@ -16,36 +16,30 @@ export default async function totoScrape(browser: Browser): Promise<TotoResult[]
     const results = await page.evaluate(() => {
         const items = [...document.querySelectorAll('.tables-wrap')];
         return items.map(item => {
-            // Toto Draw Information
-            const drawNumber = Number(item.querySelector('.drawNumber').textContent.trim().split(' ')[2]);
-            const rawDrawDate = item.querySelector('.drawDate').textContent.trim();
-            const drawDate = new Date(`${rawDrawDate} GMT+0800`);
+            const drawNumber = Number(item.querySelector('.drawNumber')?.textContent?.trim().split(' ')[2]);
+            const rawDrawDate = item.querySelector('.drawDate')?.textContent?.trim();
+            const drawDate = rawDrawDate ? new Date(`${rawDrawDate} GMT+0800`) : new Date();
             const winningNum = [
-                item.querySelector('.win1').textContent.trim(),
-                item.querySelector('.win2').textContent.trim(),
-                item.querySelector('.win3').textContent.trim(),
-                item.querySelector('.win4').textContent.trim(),
-                item.querySelector('.win5').textContent.trim(),
-                item.querySelector('.win6').textContent.trim(),
+                item.querySelector('.win1')?.textContent?.trim() || '',
+                item.querySelector('.win2')?.textContent?.trim() || '',
+                item.querySelector('.win3')?.textContent?.trim() || '',
+                item.querySelector('.win4')?.textContent?.trim() || '',
+                item.querySelector('.win5')?.textContent?.trim() || '',
+                item.querySelector('.win6')?.textContent?.trim() || '',
             ];
-            const additionalNum = item.querySelector('.additional').textContent.trim();
+            const additionalNum = item.querySelector('.additional')?.textContent?.trim() || '';
 
-            // Extract Winning Pool info
-            const winningShares = [];
+            const winningShares: { group: string; prize: number; winners: number; }[] = [];
             const parseWinningString = /[^\d.]/g;
             const winningSharesNode = item.querySelector('.tableWinningShares');
-            const winningShareRows = [...winningSharesNode.querySelectorAll('tr')].slice(2);
+            const winningShareRows = winningSharesNode ? Array.from(winningSharesNode.querySelectorAll('tr')).slice(2) : [];
 
             for (const row of winningShareRows) {
-                const columns = [...row.querySelectorAll('td')];
-                const group = columns[0].textContent.trim();
-                const prize = parseFloat(columns[1].textContent.trim().replace(parseWinningString, '')) || 0;
-                const winners = parseInt(columns[2].textContent.trim().replace(parseWinningString, '')) || 0;
-                winningShares.push({
-                    group: group,
-                    prize: prize,
-                    winners: winners,
-                });
+                const columns = Array.from(row.querySelectorAll('td'));
+                const group = columns[0].textContent?.trim() || '';
+                const prize = parseFloat(columns[1].textContent?.trim().replace(parseWinningString, '') || '0');
+                const winners = parseInt(columns[2].textContent?.trim().replace(parseWinningString, '') || '0');
+                winningShares.push({ group, prize, winners });
             }
 
             return {
