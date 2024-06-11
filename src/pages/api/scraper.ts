@@ -61,7 +61,7 @@ export default async function totoScrape(browser: Browser): Promise<TotoResult[]
         return [];
     }
 
-    // Save to database
+    // Save to prisma
     const savedResults = [];
     for (const result of results) {
         const savedResult = await prisma.totoResult.create({
