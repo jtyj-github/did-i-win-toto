@@ -13,7 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model totoTicket {
+model TotoTicket {
   id      String   @id @default(auto()) @map("_id") @db.ObjectId
   date    DateTime
   numbers Int
