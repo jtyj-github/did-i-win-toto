@@ -30,3 +30,21 @@ enum System {
   SYSTEM12
   SYSTEMROLL
 }
+
+model TotoResult {
+  id            String            @id @default(auto()) @map("_id") @db.ObjectId
+  drawNumber    Int
+  drawDate      DateTime
+  winningNum    String[]
+  additionalNum String
+  winningShares TotoWinningPool[]
+}
+
+model TotoWinningPool {
+  id       String      @id @default(auto()) @map("_id") @db.ObjectId
+  group    String
+  prize    Float
+  winners  Int
+  resultId String      @db.ObjectId
+  result   TotoResult  @relation(fields: [resultId], references: [id])
+}
