@@ -17,3 +17,5 @@ try {
 } catch (error) {
     // ignore errors
 }
+
+export { DIR_TEMP, DIR_UPLOAD };
