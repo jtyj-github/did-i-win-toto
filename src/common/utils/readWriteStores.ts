@@ -13,3 +13,10 @@ export function readStores<T>(fileName: string, type: 'temp' | 'upload' = 'temp'
 
     return JSON.parse(data) as T;
 }
+
+export function writeStores<T>(fileName: string, data: T, type: 'temp' | 'upload' = 'temp'): void {
+    const folderLocation = type === 'temp' ? DIR_TEMP : DIR_UPLOAD;
+    const filePath = path.join(folderLocation, fileName);
+
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+}
