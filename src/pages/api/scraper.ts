@@ -1,6 +1,6 @@
 import puppeteer, { Browser } from 'puppeteer';
 import prisma from '../../common/lib/prisma';
-import { TotoResult, TotoWinningPool } from '@prisma/client';
+import { TotoResult } from '@prisma/client';
 
 export default async function totoScrape(browser: Browser): Promise<TotoResult[]> {
     const page = await browser.newPage();
@@ -61,7 +61,6 @@ export default async function totoScrape(browser: Browser): Promise<TotoResult[]
         return [];
     }
 
-    // Save to prisma
     const savedResults = [];
     for (const result of results) {
         const savedResult = await prisma.totoResult.create({
