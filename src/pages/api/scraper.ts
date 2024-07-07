@@ -1,4 +1,4 @@
-import puppeteer, { Browser } from 'puppeteer';
+import { Browser } from 'puppeteer';
 import prisma from '../../common/lib/prisma';
 import { TotoResult } from '@prisma/client';
 
