@@ -1,9 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import { DIR_TEMP, DIR_UPLOAD } from './manageDirs';
+import dotenv from 'dotenv';
 
-export function readStores<T>(fileName: string, type: 'temp' | 'upload' = 'temp'): T {
-    const folderLocation = type === 'temp' ? DIR_TEMP : DIR_UPLOAD;
+dotenv.config();
+const isProd = process.env.NODE_ENV === 'production';
+
+export function readStores<T>(fileName: string, type: 'temp' | 'upload'): T {
+    const folderLocation = type === 'upload' ? DIR_TEMP : DIR_UPLOAD;
     const filePath = path.join(folderLocation, fileName);
 
     if (!fs.existsSync(filePath)) {
@@ -14,9 +18,9 @@ export function readStores<T>(fileName: string, type: 'temp' | 'upload' = 'temp'
     return JSON.parse(data) as T;
 }
 
-export function writeStores<T>(fileName: string, data: T, type: 'temp' | 'upload' = 'temp'): void {
-    const folderLocation = type === 'temp' ? DIR_TEMP : DIR_UPLOAD;
+export function writeStores<T>(fileName: string, data: T, type: 'temp' | 'upload'): void {
+    const folderLocation = type === 'upload' ? DIR_TEMP : DIR_UPLOAD;
     const filePath = path.join(folderLocation, fileName);
 
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    fs.writeFileSync(filePath, JSON.stringify(data, null, isProd ? 0 : 2));
 }
