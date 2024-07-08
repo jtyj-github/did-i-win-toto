@@ -4,14 +4,14 @@ import {TotoResult, TotoWinningPool} from "@prisma/client";
 import { getJSON } from "./common/utils/processFetchedData";
 import { writeStores } from "./common/utils/readWriteStores";
 import totoScrape from "./pages/api/scraper";
-import { write } from "fs";
+import { create } from "lodash";
 
 dotenv.config();
 const {NODE_ENV, SERVER_URL} = process.env;
 
 const isProd = NODE_ENV === 'production';
 const isTest = NODE_ENV === 'test';
-const notificationList = [];
+const notificationList: any[] = [];
 
 async function writeServerFile<T>(fileName: string): Promise<void> {
     const url = `${SERVER_URL}/${fileName}`;
@@ -37,3 +37,35 @@ async function processResult(browser: Browser) {
         console.error(error);
     }
 }
+
+const createTopicsFile = () => {
+    const fileName = 'topics.json';
+    const scraperTopics = {
+        topics: notificationList.map((item) => {
+            return {
+                title: `Toto Results for Draw ${item.drawNumber}`,
+                message: `The winning numbers for Toto Draw ${item.drawNumber} are ${item.winningNum.join(', ')}.`,
+                url: `${SERVER_URL}/uploads/v1/sg_lottery.json`
+            }
+        })};
+    writeStores(fileName, [scraperTopics]);
+}
+
+const main = async () => {
+    console.log(`Current Environment -- ${process.env.NODE_ENV}`);
+    const isARMMac = process.arch === 'arm64' && process.platform === 'darwin';
+
+    const browser = await puppeteer.launch({
+        headless: isProd || isTest,
+        args: isProd || isTest ? ['--no-sandbox'] : [],
+        executablePath: isARMMac ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' : undefined
+    });
+    await processResult(browser);
+    await browser.close();
+    createTopicsFile();
+}
+
+main().then(() => process.exit(0)).catch((error) => {
+    console.error(error);
+    process.exit(1);
+})
