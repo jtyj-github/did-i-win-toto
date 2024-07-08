@@ -2,14 +2,16 @@ import { fetch } from './fetch';
 import fs from 'fs';
 
 export async function getJSON<T>(url: string): Promise<T> {
-    try{
-        const response = await fetch(url);
-        const data = await response.json();
-        return data as T;
-    } catch (error) {
+    const data: T = await fetch(url)
+    .then((response) =>{
+        return response.json() as Promise<T>;
+    })
+    .catch((error) => {
         console.error(error);
-        throw new Error('Problem with fetching data');
-    }
+        return Promise.reject('Invalid JSON');
+    });
+    
+    return data;
 }
 
 export async function readLocalJSON<T>(filePath: string): Promise<T> {

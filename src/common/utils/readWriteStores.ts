@@ -18,7 +18,7 @@ export function readStores<T>(fileName: string, type = 'temp'): T {
     return JSON.parse(data) as T;
 }
 
-export function writeStores<T>(fileName: string, data: T, type = 'temp'): void {
+export function writeStores<T>(fileName: string, data: T[], type = 'temp'): void {
     const folderLocation = type === 'upload' ? DIR_TEMP : DIR_UPLOAD;
     const filePath = path.join(folderLocation, fileName);
 
