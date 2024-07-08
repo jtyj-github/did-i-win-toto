@@ -16,6 +16,9 @@ async function writeServerFile<T>(fileName: string): Promise<void> {
     const url = `${SERVER_URL}/${fileName}`;
     console.log(`Fetching ${fileName}.json from ${url}`);
     const list = await getJSON<T>(url).catch((error) => {
+        console.error(`Error: ${fileName}.json does not exist on Server.`);
         return {};
     });
+
+    Object.keys(list).length > 0 ? writeStores(fileName, list) : console.warn(`Warning: Skipping file creation.`) 
 }
