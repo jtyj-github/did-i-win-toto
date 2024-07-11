@@ -1,9 +1,9 @@
 import dotenv from "dotenv"; 
 import puppeteer, {Browser} from "puppeteer";
 import {TotoResult, TotoWinningPool} from "@prisma/client";
-import { getJSON } from "./common/utils/processFetchedData";
-import { writeStores } from "./common/utils/readWriteStores";
-import totoScrape from "./pages/api/scraper";
+import { getJSON } from "../../common/utils/processFetchedData";
+import { writeStores } from "../../common/utils/readWriteStores";
+import totoScrape from "../../common/utils/scraper";
 
 dotenv.config();
 const {NODE_ENV, SERVER_URL} = process.env;
@@ -66,7 +66,4 @@ const main = async () => {
     createTopicsFile();
 }
 
-main().then(() => process.exit(0)).catch((error) => {
-    console.error(error);
-    process.exit(1);
-})
+export default main;
