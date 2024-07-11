@@ -17,8 +17,7 @@ export default async function totoScrape(browser: Browser): Promise<TotoResult[]
         const items = [...document.querySelectorAll('.tables-wrap')];
         return items.map(item => {
             const drawNumber = Number(item.querySelector('.drawNumber')?.textContent?.trim().split(' ')[2]);
-            const rawDrawDate = item.querySelector('.drawDate')?.textContent?.trim();
-            const drawDate = rawDrawDate ? new Date(`${rawDrawDate} GMT+0800`) : new Date();
+            const drawDate = item.querySelector('.drawDate')?.textContent;            
             const winningNum = [
                 item.querySelector('.win1')?.textContent?.trim() || '',
                 item.querySelector('.win2')?.textContent?.trim() || '',
@@ -43,11 +42,11 @@ export default async function totoScrape(browser: Browser): Promise<TotoResult[]
             }
 
             return {
-                drawNumber: drawNumber,
-                drawDate: drawDate,
-                winningNum: winningNum,
-                additionalNum: additionalNum,
-                winningShares: winningShares,
+                drawNumber,
+                drawDate,
+                winningNum,
+                additionalNum,
+                winningShares,
             };
         });
     }).catch((error: Error) => {
@@ -61,12 +60,13 @@ export default async function totoScrape(browser: Browser): Promise<TotoResult[]
         return [];
     }
 
+    console.log({results})
     const savedResults = [];
     for (const result of results) {
         const savedResult = await prisma.totoResult.create({
             data: {
                 drawNumber: result.drawNumber,
-                drawDate: result.drawDate,
+                drawDate: result.drawDate ?? '',
                 winningNum: result.winningNum,
                 additionalNum: result.additionalNum,
                 winningShares: {
