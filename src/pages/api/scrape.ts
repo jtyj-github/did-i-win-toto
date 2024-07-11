@@ -10,7 +10,7 @@ const {NODE_ENV, SERVER_URL} = process.env;
 
 const isProd = NODE_ENV === 'production';
 const isTest = NODE_ENV === 'test';
-const notificationList: any[] = [];
+let notificationList: any[];
 
 async function writeServerFile<T>(fileName: string): Promise<void> {
     const url = `${SERVER_URL}/${fileName}`;
@@ -30,8 +30,7 @@ async function processResult(browser: Browser) {
             await writeServerFile<TotoResult>(`v1/${fileName}`);
         }
         const data = await totoScrape(browser); 
-        notificationList.push(data);
-
+        notificationList = data;
         writeStores<TotoResult>(fileName, data, 'upload');
 
     } catch (error) {
