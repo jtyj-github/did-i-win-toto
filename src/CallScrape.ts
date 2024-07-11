@@ -4,7 +4,6 @@ import {TotoResult, TotoWinningPool} from "@prisma/client";
 import { getJSON } from "./common/utils/processFetchedData";
 import { writeStores } from "./common/utils/readWriteStores";
 import totoScrape from "./pages/api/scraper";
-import { create } from "lodash";
 
 dotenv.config();
 const {NODE_ENV, SERVER_URL} = process.env;
@@ -18,8 +17,8 @@ async function writeServerFile<T>(fileName: string): Promise<void> {
     console.log(`Fetching ${fileName}.json from ${url}`);
     const list = await getJSON<T>(url).catch(() => {
         console.error(`Error: ${fileName}.json does not exist on Server.`);
-        return {};
-    });
+        return {} as T;
+    }) || {};
 
     Object.keys(list).length > 0 ? writeStores(fileName, list) : console.warn(`Warning: Skipping file creation.`) 
 }
@@ -27,7 +26,9 @@ async function writeServerFile<T>(fileName: string): Promise<void> {
 async function processResult(browser: Browser) {
     const fileName = 'sg_lottery.json';
     try {
-        isProd || isTest ? await writeServerFile<TotoResult>(`v1/${fileName}`) : null ;
+        if (isProd || isTest) {
+            await writeServerFile<TotoResult>(`v1/${fileName}`);
+        }
         const data = await totoScrape(browser); 
         notificationList.push(data);
 
