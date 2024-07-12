@@ -1,6 +1,6 @@
 import dotenv from "dotenv"; 
 import puppeteer, {Browser} from "puppeteer";
-import {TotoResult, TotoWinningPool} from "@prisma/client";
+import { TotoResult } from "@prisma/client";
 import { getJSON } from "../../common/utils/processFetchedData";
 import { writeStores } from "../../common/utils/readWriteStores";
 import totoScrape from "../../common/utils/scraper";
