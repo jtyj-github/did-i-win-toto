@@ -1,6 +1,20 @@
 [
   {
-    "id": "668f54f35b8667215a45bfe4",
+    "id": "6690e62af39c4d6be82908b5",
+    "drawNumber": 3990,
+    "drawDate": "Thu, 11 Jul 2024",
+    "winningNum": [
+      "15",
+      "17",
+      "22",
+      "32",
+      "34",
+      "40"
+    ],
+    "additionalNum": "6"
+  },
+  {
+    "id": "6690e62af39c4d6be82908bd",
     "drawNumber": 3989,
     "drawDate": "Mon, 08 Jul 2024",
     "winningNum": [
@@ -14,7 +28,7 @@
     "additionalNum": "35"
   },
   {
-    "id": "668f54f35b8667215a45bfec",
+    "id": "6690e62af39c4d6be82908c5",
     "drawNumber": 3988,
     "drawDate": "Thu, 04 Jul 2024",
     "winningNum": [
@@ -28,7 +42,7 @@
     "additionalNum": "33"
   },
   {
-    "id": "668f54f35b8667215a45bff4",
+    "id": "6690e62bf39c4d6be82908cd",
     "drawNumber": 3987,
     "drawDate": "Mon, 01 Jul 2024",
     "winningNum": [
@@ -42,7 +56,7 @@
     "additionalNum": "39"
   },
   {
-    "id": "668f54f35b8667215a45bffc",
+    "id": "6690e62bf39c4d6be82908d5",
     "drawNumber": 3986,
     "drawDate": "Thu, 27 Jun 2024",
     "winningNum": [
@@ -56,7 +70,7 @@
     "additionalNum": "5"
   },
   {
-    "id": "668f54f35b8667215a45c004",
+    "id": "6690e62bf39c4d6be82908dd",
     "drawNumber": 3985,
     "drawDate": "Mon, 24 Jun 2024",
     "winningNum": [
@@ -68,19 +82,5 @@
       "49"
     ],
     "additionalNum": "25"
-  },
-  {
-    "id": "668f54f35b8667215a45c00c",
-    "drawNumber": 3984,
-    "drawDate": "Thu, 20 Jun 2024",
-    "winningNum": [
-      "3",
-      "12",
-      "14",
-      "16",
-      "17",
-      "30"
-    ],
-    "additionalNum": "27"
   }
 ]
