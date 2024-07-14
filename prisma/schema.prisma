@@ -34,7 +34,7 @@ enum System {
 model TotoResult {
   id            String            @id @default(auto()) @map("_id") @db.ObjectId
   drawNumber    Int
-  drawDate      DateTime
+  drawDate      String
   winningNum    String[]
   additionalNum String
   winningShares TotoWinningPool[]
