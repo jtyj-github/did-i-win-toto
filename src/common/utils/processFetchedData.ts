@@ -1,4 +1,4 @@
-import { fetch } from './fetch';
+import { fetch } from '@/common/utils/fetch';
 import fs from 'fs';
 
 export async function getJSON<T>(url: string): Promise<T> {

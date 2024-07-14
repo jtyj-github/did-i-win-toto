@@ -1,5 +1,5 @@
 import { Browser } from 'puppeteer';
-import prisma from '../lib/prisma';
+import prisma from '@/common/lib/prisma';
 import { TotoResult } from '@prisma/client';
 
 export default async function totoScrape(browser: Browser): Promise<TotoResult[]> {
