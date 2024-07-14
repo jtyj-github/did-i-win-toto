@@ -9,6 +9,10 @@
 # testing
 /coverage
 
+# scripts
+/temp
+/uploads
+
 # next.js
 /.next/
 /out/
