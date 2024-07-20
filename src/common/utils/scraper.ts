@@ -62,6 +62,7 @@ export default async function totoScrape(browser: Browser): Promise<TotoResult[]
 
     const savedResults = [];
     for (const result of results) {
+
         const savedResult = await prisma.totoResult.create({
             data: {
                 drawNumber: result.drawNumber,
@@ -76,7 +77,11 @@ export default async function totoScrape(browser: Browser): Promise<TotoResult[]
                     })),
                 },
             },
-        });
+            include: {
+                winningShares: true,
+            },
+            }
+        );
         savedResults.push(savedResult);
     }
 
