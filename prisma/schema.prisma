@@ -15,8 +15,9 @@ datasource db {
 
 model TotoTicket {
   id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  numbers Int
+  numbers Int[]
   type    System
+  date    String
 }
 
 enum System {
