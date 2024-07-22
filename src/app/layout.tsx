@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
-import React from 'react';
-
-import { inter } from '@/common/components/font/Inter';
 
 import { CoreLayout } from '@/common/components/CoreLayout';
+import { inter } from '@/common/components/font/Inter';
 
 import '@/common/styles/globals.css';
 
@@ -18,8 +16,8 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body className={inter.className}>
+        <html className={[inter.variable].join(' ')} lang="en">
+            <body>
                 <CoreLayout>{children}</CoreLayout>
             </body>
         </html>
