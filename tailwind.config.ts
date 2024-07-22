@@ -3,53 +3,59 @@ import { fontFamily } from 'tailwindcss/defaultTheme';
 
 const config: Config = {
     content: [
-        './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-        './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-        './src/app/**/*.{js,ts,jsx,tsx,mdx}'
+        './src/common/**/*.{js,ts,jsx,tsx,mdx}',
+        './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+        './src/modules/**/*.{js,ts,jsx,tsx,mdx}'
     ],
     theme: {
         extend: {
+            zIndex: {
+                elevated: '1',
+                header: '2',
+                modal: '50',
+                popover: '51',
+                tooltip: '52'
+            },
             fontFamily: {
                 sans: ['var(--font-inter)', ...fontFamily.sans]
             },
             colors: {
-                link: '#2563EB',
                 primary: {
-                    default: '#1eeb40'
+                    default: '#2B71E9'
                 },
                 bg: {
-                    base: '#FAFAFA'
+                    base: '#010409'
                 },
                 border: {
-                    base: '#DFDFE2'
+                    base: '#30363D'
                 },
                 surface: {
-                    base: '#EFEFF0',
-                    elevated: '#E7E7E9'
+                    base: '#0D1117',
+                    elevated: '#161B22'
                 },
                 text: {
-                    'em-high': '#070708',
-                    'em-mid': '#505162',
-                    'em-low': '#73748C',
-                    'em-placeholder': '#ABABBA',
-                    'on-primary': '#080B5E',
-                    'on-secondary': '#F7F7F8',
-                    'on-tertiary': '#3C3C44',
-                    'on-tertiary-high': '#070708',
-                    'on-error': '#EF4444',
-                    error: '#DC2626',
-                    success: '#22C55E',
-                    warning: '#F59E0B'
+                    'em-high': '#F7F7F8',
+                    'em-mid': '#A2A2B4',
+                    'em-low': '#777890',
+                    'em-placeholder': '#464655',
+                    'on-primary': '#F7F7F8',
+                    'on-success': '#29C244',
+                    'on-error': '#E31E1E',
+                    'on-warning': '#FB9F05'
                 },
                 element: {
-                    primary: '#1eeb40',
-                    secondary: '#EB1EC9',
-                    tertiary: '#DFDFE2',
-                    disabled: '#DDDEE4',
-                    success: '#052E16',
-                    warning: '#451A03',
-                    error: '#450A0A'
-                }
+                    primary: '#2B71E9',
+                    secondary: '#2FBB4F',
+                    tertiary: '#292E36',
+                    disabled: '#1E2226',
+                    success: '#054511',
+                    error: '#660707',
+                    warning: '#573B0A'
+                },
+                link: '#2563EB',
+                success: '#29C244',
+                error: '#E31E1E',
+                warning: '#FB9F05'
             },
             backgroundImage: {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
