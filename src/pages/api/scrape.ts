@@ -10,7 +10,7 @@ const {NODE_ENV, SERVER_URL} = process.env;
 
 const isProd = NODE_ENV === 'production';
 const isTest = NODE_ENV === 'test';
-let notificationList: any[];
+let notificationList: TotoResult[];
 
 async function writeServerFile<T>(fileName: string): Promise<void> {
     const url = `${SERVER_URL}/${fileName}`;
