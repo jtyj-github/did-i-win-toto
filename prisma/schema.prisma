@@ -15,7 +15,6 @@ datasource db {
 
 model TotoTicket {
   id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  date    DateTime
   numbers Int
   type    System
 }
