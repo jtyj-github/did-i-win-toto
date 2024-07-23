@@ -10,7 +10,6 @@ const storeUserTicket = async (req: NextApiRequest, res: NextApiResponse) => {
                 data: {
                     numbers: req.body.numbers,
                     type: req.body.type,
-                    date: req.body.date,
                     uuid: uuid,
                 }
             })
