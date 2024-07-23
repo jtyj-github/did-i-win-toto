@@ -18,6 +18,7 @@ model TotoTicket {
   numbers Int[]
   type    System
   date    String
+  uuid    String
 }
 
 enum System {
