@@ -4,6 +4,7 @@ import { CoreLayout } from '@/common/components/CoreLayout';
 import { inter } from '@/common/components/font/Inter';
 
 import '@/common/styles/globals.css';
+import '@/common/styles/code-input.css';
 
 export const metadata: Metadata = {
     title: 'Did I Win Toto?',

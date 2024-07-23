@@ -20,6 +20,7 @@
         "puppeteer": "^22.10.0",
         "react": "^18",
         "react-dom": "^18",
+        "react-verification-input": "^4.1.2",
         "tailwind-merge": "^2.3.0",
         "tailwind-variants": "^0.2.1"
     },

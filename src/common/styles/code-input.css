@@ -1,0 +1,7 @@
+.vi__character {
+    @apply rounded-md border border-border-base bg-transparent;
+
+    &.vi__character--filled {
+        @apply text-text-em-high;
+    }
+}
