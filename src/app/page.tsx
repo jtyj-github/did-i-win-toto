@@ -125,13 +125,13 @@ export default function Home() {
                             <div className="flex justify-between px-8 py-2">
                                 {MY_SUBMITTED_TICKET.number.map((num, index) => (
                                     <div key={index} className="grid h-8 w-8 place-content-center">
-                                        <Heading as="h2" className="font-mono text-2xl font-bold">
+                                        <Heading as="h2" className="font-mono text-3xl font-bold">
                                             {num}
                                         </Heading>
                                     </div>
                                 ))}
                                 <div className="grid h-8 w-8 place-content-center">
-                                    <Heading as="h2" className="font-mono text-2xl font-bold">
+                                    <Heading as="h2" className="font-mono text-3xl font-bold">
                                         {MY_SUBMITTED_TICKET.additionalNum}
                                     </Heading>
                                 </div>

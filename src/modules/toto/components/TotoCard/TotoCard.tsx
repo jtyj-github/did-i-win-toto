@@ -32,10 +32,10 @@ export const TotoCard = ({
             {/* Heading */}
             <div className="flex flex-col gap-2">
                 <div className="flex justify-between">
-                    <Heading as="h3" className="text-sm">
+                    <Heading as="h3" className="text-xl">
                         Draw <span className="font-bold">#{drawNumber}</span>
                     </Heading>
-                    <Heading as="h3" className="text-sm">
+                    <Heading as="h3" className="text-xl">
                         {drawDate}
                     </Heading>
                 </div>
@@ -47,7 +47,7 @@ export const TotoCard = ({
                     <div key={index} className="grid h-8 w-8 place-content-center">
                         <Heading
                             as="h2"
-                            className="font-mono text-2xl font-bold text-element-primary">
+                            className="font-mono text-3xl font-bold text-element-primary">
                             {num}
                         </Heading>
                     </div>
@@ -55,7 +55,7 @@ export const TotoCard = ({
                 <div className="grid h-8 w-8 place-content-center">
                     <Heading
                         as="h2"
-                        className="font-mono text-2xl font-bold text-element-secondary">
+                        className="font-mono text-3xl font-bold text-element-secondary">
                         {additionalNum}
                     </Heading>
                 </div>
@@ -64,13 +64,13 @@ export const TotoCard = ({
             <div className="flex flex-col gap-2">
                 {winningPool.map((pool, index) => (
                     <div key={index} className="flex items-center justify-between">
-                        <Heading as="h3" className="w-20 text-center text-sm">
+                        <Heading as="h3" className="w-20 text-center text-base">
                             {`Group ${pool.winningGroup}`}
                         </Heading>
-                        <Heading as="h3" className="text-center text-sm">
+                        <Heading as="h3" className="text-center text-base">
                             {pool.winningPrize ? formatAmount(pool.winningPrize) : '-'}
                         </Heading>
-                        <Heading as="h3" className="w-20 text-center text-sm">
+                        <Heading as="h3" className="w-20 text-center text-base">
                             {pool.winners ? formatAmount(pool.winners, { style: 'decimal' }) : '-'}
                         </Heading>
                     </div>
