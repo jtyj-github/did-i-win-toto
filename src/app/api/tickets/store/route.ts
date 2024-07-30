@@ -13,28 +13,23 @@ export const POST = async (req: Request, res: NextApiResponse) => {
                 uuid: userId
             }
         });
-
-            return NextResponse.json(
-                { message: 'Ticket successfully created', data: { newTicket } },
+            return Response.json(
+                { message: 'Ticket successfully created'},
                 { status: 200 }
             );
-        } else {
-            throw new Error(
-                'Window object is not defined. Ensure useUser is called on the client-side.'
-            );
         }
-    } catch (error) {
+    catch (error) {
         console.error('Error creating ticket:', error);
-        return NextResponse.json(
+        return Response.json(
             { message: 'Error creating ticket', error: error},
             { status: 500 }
         );
     }
-}
+};
 
 /** 
 import prisma from '@/common/lib/prisma';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, Response } from 'next/server';
 
 export async function POST(req: NextRequest) {  
     const { userId, numbers, type } = await req.json();
@@ -46,6 +41,6 @@ export async function POST(req: NextRequest) {
             uuid: userId
         }
     })
-    return NextResponse.json({message: "Ticket successfully created", data: {newTicket}}, {status : 200})
+    return Response.json({message: "Ticket successfully created", data: {newTicket}}, {status : 200})
 }
 */
