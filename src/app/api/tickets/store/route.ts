@@ -1,9 +1,9 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiResponse } from 'next';
 
 import prisma from '@/common/lib/prisma';
 
-export const POST = async (req: NextApiRequest, res: NextApiResponse) => {
-    const { userId, numbers, type } = await req.body;
+export const POST = async (req: Request, res: NextApiResponse) => {
+    const { userId, numbers, type } = await req.json();
 
     try {
         await prisma.totoTicket.create({
