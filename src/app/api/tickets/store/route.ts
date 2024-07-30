@@ -1,22 +1,18 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextApiResponse } from 'next';
+
 import prisma from '@/common/lib/prisma';
-import { useUser } from '@/common/hooks/useUser';
 
-export async function POST(req: NextRequest) {
+export const POST = async (req: Request, res: NextApiResponse) => {
+    const { userId, numbers, type } = await req.json();
+
     try {
-        const { numbers, type } = await req.json();
-
-        // Ensure useUser is called client-side
-        if (typeof window !== 'undefined') {
-            const userId = useUser();
-
-            const newTicket = await prisma.totoTicket.create({
-                data: {
-                    numbers,
-                    type,
-                    uuid: userId
-                }
-            });
+        await prisma.totoTicket.create({
+            data: {
+                numbers,
+                type,
+                uuid: userId
+            }
+        });
 
             return NextResponse.json(
                 { message: 'Ticket successfully created', data: { newTicket } },
