@@ -98,10 +98,14 @@ export default function Home() {
     const USER_HAS_SUBMITTED_TICKET = true;
     const MY_SUBMITTED_TICKET = {
         drawNumber: 3391,
-        number: [1, 2, 3, 4, 5, 14],
-        additionalNum: '7'
+        number: [1, 2, 3, 4, 5, 7, 14],
     };
-
+    
+    const MOCK_POST =  {
+        userId: '1234-5678',
+        numbers: [1, 2, 3, 4, 5, 6],
+        type: 'SYSTEM6'
+    }
     const handleSubmitTicket = () => {
         // TODO: Implement submit ticket
         // TODO: open modal to submit ticket
@@ -130,11 +134,6 @@ export default function Home() {
                                         </Heading>
                                     </div>
                                 ))}
-                                <div className="grid h-8 w-8 place-content-center">
-                                    <Heading as="h2" className="font-mono text-3xl font-bold">
-                                        {MY_SUBMITTED_TICKET.additionalNum}
-                                    </Heading>
-                                </div>
                             </div>
                         )}
                     </div>
