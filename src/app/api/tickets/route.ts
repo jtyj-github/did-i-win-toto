@@ -1,8 +1,6 @@
-import { NextApiResponse } from 'next';
-
 import prisma from '@/common/lib/prisma';
 
-export const POST = async (req: Request, res: NextApiResponse) => {
+export const POST = async (req: Request) => {
     const { userId } = await req.json();
 
     try {
