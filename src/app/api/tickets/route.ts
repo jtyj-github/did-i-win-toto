@@ -11,13 +11,14 @@ export const POST = async (req: Request, res: NextApiResponse) => {
                 uuid: userId
             }
         });
-
-        res.status(200).json({
+        return Response.json({
             message: 'Ticket Successfully Retrieved',
             data: { userTickets }
         });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Error retrieving ticket' });
+        return Response.json({
+            message: 'Error retrieving ticket',
+            error: error
+        });
     }
 };
