@@ -1,4 +1,6 @@
 'use client';
+import { useState, useEffect } from 'react';
+
 import { Button } from '@/common/components/Button';
 import { Heading } from '@/common/components/Heading';
 import { Main } from '@/common/components/Layout';
@@ -6,95 +8,33 @@ import { Main } from '@/common/components/Layout';
 import { TotoCard, TotoCardProps } from '@/modules/toto/components/TotoCard';
 
 export default function Home() {
-    const MOCK_TOTO_CARDS: TotoCardProps[] = [
-        {
-            drawNumber: 3390,
-            drawDate: 'Thu, 11 July 2024',
-            winningNum: [1, 2, 3, 4, 5, 6],
-            additionalNum: '7',
-            winningPool: [
-                {
-                    winningGroup: 1,
-                    winningPrize: 2934077,
-                    winners: 1
-                },
-                {
-                    winningGroup: 2,
-                    winningPrize: 66746,
-                    winners: 9
-                },
-                {
-                    winningGroup: 3,
-                    winningPrize: 564,
-                    winners: 733
-                },
-                {
-                    winningGroup: 4,
-                    winningPrize: 249,
-                    winners: 906
-                },
-                {
-                    winningGroup: 5,
-                    winningPrize: 50,
-                    winners: 25949
-                },
-                {
-                    winningGroup: 6,
-                    winningPrize: 25,
-                    winners: 19667
-                },
-                {
-                    winningGroup: 7,
-                    winningPrize: 10,
-                    winners: 337545
-                }
-            ]
-        },
-        {
-            drawNumber: 3389,
-            drawDate: 'Thu, 4 July 2024',
-            winningNum: [22, 33, 41, 15, 6, 47],
-            additionalNum: '8',
-            winningPool: [
-                {
-                    winningGroup: 1,
-                    winningPrize: undefined,
-                    winners: undefined
-                },
-                {
-                    winningGroup: 2,
-                    winningPrize: 186640,
-                    winners: 2
-                },
-                {
-                    winningGroup: 3,
-                    winningPrize: 2087,
-                    winners: 123
-                },
-                {
-                    winningGroup: 4,
-                    winningPrize: 441,
-                    winners: 318
-                },
-                {
-                    winningGroup: 5,
-                    winningPrize: 50,
-                    winners: 6913
-                },
-                {
-                    winningGroup: 6,
-                    winningPrize: 25,
-                    winners: 10878
-                },
-                {
-                    winningGroup: 7,
-                    winningPrize: 10,
-                    winners: 135842
-                }
-            ]
-        }
-    ];
+    const [TotoCards, setTotoCards] = useState<TotoCardProps[]>([]);
 
+    useEffect(() => {
+        const fetchTotoCards = async () => {
+            try {
+                const response = await fetch('/api/tickets/cards', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to obtain TOTO tickets');
+                }
+
+                const data = await response.json();
+                console.log(data);
+                setTotoCards(data.data);
+
+            } catch (error) {
+                console.error('An error occured in obtaining your TOTO tickets',error);
+            
+            }
+        }
+        fetchTotoCards();
+    }, []);
+    
     const USER_HAS_SUBMITTED_TICKET = true;
     const MY_SUBMITTED_TICKET = {
         drawNumber: 3391,
@@ -140,7 +80,7 @@ export default function Home() {
                 </div>
             )}
             <div className="mt-10 flex flex-col gap-4">
-                {MOCK_TOTO_CARDS.map((totoCard, index) => (
+                {TotoCards.map((totoCard, index) => (
                     <TotoCard key={index} {...totoCard} />
                 ))}
             </div>
