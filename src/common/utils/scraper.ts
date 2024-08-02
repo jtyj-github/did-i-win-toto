@@ -28,17 +28,17 @@ export default async function totoScrape(browser: Browser): Promise<TotoResult[]
             ];
             const additionalNum = item.querySelector('.additional')?.textContent?.trim() || '';
 
-            const winningShares: { group: string; prize: number; winners: number; }[] = [];
+            const winningPool: { group: string; prize: number; winners: number; }[] = [];
             const parseWinningString = /[^\d.]/g;
-            const winningSharesNode = item.querySelector('.tableWinningShares');
-            const winningShareRows = winningSharesNode ? Array.from(winningSharesNode.querySelectorAll('tr')).slice(2) : [];
+            const winningPoolNode = item.querySelector('.tableWinningPoolwinningPool');
+            const winningShareRows = winningPoolNode ? Array.from(winningPoolNode.querySelectorAll('tr')).slice(2) : [];
 
             for (const row of winningShareRows) {
                 const columns = Array.from(row.querySelectorAll('td'));
                 const group = columns[0].textContent?.trim() || '';
                 const prize = parseFloat(columns[1].textContent?.trim().replace(parseWinningString, '') || '0');
                 const winners = parseInt(columns[2].textContent?.trim().replace(parseWinningString, '') || '0');
-                winningShares.push({ group, prize, winners });
+                winningPool.push({ group, prize, winners });
             }
 
             return {
@@ -46,7 +46,7 @@ export default async function totoScrape(browser: Browser): Promise<TotoResult[]
                 drawDate,
                 winningNum,
                 additionalNum,
-                winningShares,
+                winningPool,
             };
         });
     }).catch((error: Error) => {
@@ -69,8 +69,8 @@ export default async function totoScrape(browser: Browser): Promise<TotoResult[]
                 drawDate: result.drawDate ?? '',
                 winningNum: result.winningNum,
                 additionalNum: result.additionalNum,
-                winningShares: {
-                    create: result.winningShares.map(share => ({
+                winningPool: {
+                    create: result.winningPool.map(share => ({
                         group: share.group,
                         prize: share.prize,
                         winners: share.winners,
@@ -78,7 +78,7 @@ export default async function totoScrape(browser: Browser): Promise<TotoResult[]
                 },
             },
             include: {
-                winningShares: true,
+                winningPool: true,
             },
             }
         );
