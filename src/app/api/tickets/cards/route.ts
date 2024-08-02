@@ -8,5 +8,6 @@ export const GET = async () => {
 
     return Response.json({
         message: 'Successfully retrieved lottery data',
+        data: output
     })
 }
