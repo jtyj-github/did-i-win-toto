@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Button } from '@/common/components/Button';
 import { Heading } from '@/common/components/Heading';
@@ -9,6 +10,7 @@ import { TotoCard, TotoCardProps } from '@/modules/toto/components/TotoCard';
 
 export default function Home() {
     const [TotoCards, setTotoCards] = useState<TotoCardProps[]>([]);
+    const [userId, setUserId] = useState<string>('');
 
     useEffect(() => {
         const fetchTotoCards = async () => {
@@ -34,6 +36,16 @@ export default function Home() {
         }
         fetchTotoCards();
     }, []);
+
+    useEffect(() => {
+        let userId = localStorage.getItem('userId');
+
+        if (!userId) {
+            userId = uuidv4();
+            localStorage.setItem('userId', userId);
+        }
+        setUserId(userId);
+    }, [userId]);
     
     const USER_HAS_SUBMITTED_TICKET = true;
     const MY_SUBMITTED_TICKET = {
