@@ -40,6 +40,8 @@ export const useTotoSubmissionModal = ({ onSubmit, ...props }: useTotoSubmission
                 description: 'Failed to submit toto ticket',
                 variant: 'error'
             });
+
+            setValue('');
         }
         onClose();
     };
