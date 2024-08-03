@@ -7,6 +7,7 @@ import { Heading } from '@/common/components/Heading';
 import { Main } from '@/common/components/Layout';
 
 import { TotoCard, TotoCardProps } from '@/modules/toto/components/TotoCard';
+import { useTotoSubmissionModal } from '@/modules/toto/hooks/useTotoSubmissionModal';
 
 export default function Home() {
     const [TotoCards, setTotoCards] = useState<TotoCardProps[]>([]);
@@ -28,12 +29,10 @@ export default function Home() {
                 const data = await response.json();
                 console.log(data);
                 setTotoCards(data.data);
-
             } catch (error) {
-                console.error('An error occured in obtaining your TOTO tickets',error);
-            
+                console.error('An error occured in obtaining your TOTO tickets', error);
             }
-        }
+        };
         fetchTotoCards();
     }, []);
 
@@ -46,22 +45,26 @@ export default function Home() {
         }
         setUserId(userId);
     }, [userId]);
-    
+
     const USER_HAS_SUBMITTED_TICKET = true;
     const MY_SUBMITTED_TICKET = {
         drawNumber: 3391,
-        number: [1, 2, 3, 4, 5, 7, 14],
+        number: [1, 2, 3, 4, 5, 7, 14]
     };
-    
-    const MOCK_POST =  {
+
+    const MOCK_POST = {
         userId: '1234-5678',
         numbers: [1, 2, 3, 4, 5, 6],
         type: 'SYSTEM6'
-    }
-    const handleSubmitTicket = () => {
-        // TODO: Implement submit ticket
-        // TODO: open modal to submit ticket
     };
+    const handleSubmitTicket = (value: string) => {
+        // TODO: Implement submit ticket
+        console.log({ value });
+    };
+
+    const { onOpen, renderModal } = useTotoSubmissionModal({
+        onSubmit: handleSubmitTicket
+    });
 
     return (
         <Main className="gap-4">
@@ -69,7 +72,7 @@ export default function Home() {
                 <Heading as="h1" className="text-2xl font-bold">
                     Home
                 </Heading>
-                <Button onClick={handleSubmitTicket}>Submit my ticket</Button>
+                <Button onClick={onOpen}>Submit my ticket</Button>
             </div>
             {USER_HAS_SUBMITTED_TICKET && (
                 <div className="flex flex-col gap-4">
@@ -92,10 +95,11 @@ export default function Home() {
                 </div>
             )}
             <div className="mt-10 flex flex-col gap-4">
-                {TotoCards.map((totoCard, index) => (
-                    <TotoCard key={index} {...totoCard} />
-                ))}
+                {TotoCards &&
+                    TotoCards.length > 0 &&
+                    TotoCards.map((totoCard, index) => <TotoCard key={index} {...totoCard} />)}
             </div>
+            {renderModal}
         </Main>
     );
 }
