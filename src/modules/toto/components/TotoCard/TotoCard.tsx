@@ -4,8 +4,8 @@ import { Heading } from '@/common/components/Heading';
 import { formatAmount } from '@/common/utils';
 
 export type WinningPool = {
-    winningGroup: number;
-    winningPrize?: number;
+    group: string;
+    prize?: number;
     winners?: number;
 };
 
@@ -65,10 +65,10 @@ export const TotoCard = ({
                 {winningPool.map((pool, index) => (
                     <div key={index} className="flex items-center justify-between">
                         <Heading as="h3" className="w-20 text-center text-base">
-                            {`Group ${pool.winningGroup}`}
+                            {pool.group}
                         </Heading>
                         <Heading as="h3" className="text-center text-base">
-                            {pool.winningPrize ? formatAmount(pool.winningPrize) : '-'}
+                            {pool.prize ? formatAmount(pool.prize) : '-'}
                         </Heading>
                         <Heading as="h3" className="w-20 text-center text-base">
                             {pool.winners ? formatAmount(pool.winners, { style: 'decimal' }) : '-'}
