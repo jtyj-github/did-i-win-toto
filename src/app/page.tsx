@@ -1,50 +1,17 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-
 import { Button } from '@/common/components/Button';
 import { Heading } from '@/common/components/Heading';
 import { Main } from '@/common/components/Layout';
 
-import { TotoCard, TotoCardProps } from '@/modules/toto/components/TotoCard';
+import { TotoCard, } from '@/modules/toto/components/TotoCard';
+import { useTotoCards } from '@/modules/toto/hooks/useTotoCards';
 import { useTotoSubmissionModal } from '@/modules/toto/hooks/useTotoSubmissionModal';
+import { useUser } from '@/modules/toto/hooks/useUser';
 
 export default function Home() {
-    const [TotoCards, setTotoCards] = useState<TotoCardProps[]>([]);
-    const [userId, setUserId] = useState<string>('');
+    const { userId } = useUser();
+    const { TotoCards } = useTotoCards();
 
-    useEffect(() => {
-        const fetchTotoCards = async () => {
-            try {
-                const response = await fetch('/api/tickets/cards', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                if (!response.ok) {
-                    throw new Error('Failed to obtain TOTO tickets');
-                }
-
-                const data = await response.json();
-                console.log(data);
-                setTotoCards(data.data);
-            } catch (error) {
-                console.error('An error occured in obtaining your TOTO tickets', error);
-            }
-        };
-        fetchTotoCards();
-    }, []);
-
-    useEffect(() => {
-        let userId = localStorage.getItem('userId');
-
-        if (!userId) {
-            userId = uuidv4();
-            localStorage.setItem('userId', userId);
-        }
-        setUserId(userId);
-    }, [userId]);
 
     const USER_HAS_SUBMITTED_TICKET = true;
     const MY_SUBMITTED_TICKET = {
