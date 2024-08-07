@@ -1,6 +1,7 @@
-import { Browser } from 'puppeteer';
-import prisma from '@/common/lib/prisma';
 import { TotoResult } from '@prisma/client';
+import { Browser } from 'puppeteer';
+
+import prisma from '@/common/lib/prisma';
 
 export default async function totoScrape(browser: Browser): Promise<TotoResult[]> {
     const page = await browser.newPage();
