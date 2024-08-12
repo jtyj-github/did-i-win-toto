@@ -7,7 +7,7 @@ const fileName = 'sg_lottery.json';
 export const GET = async () => {
 
     try {
-        const output = readStores<TotoCardProps>(`/${fileName}`, 'uploads');
+        const output = readStores<TotoCardProps>(`/${fileName}`, 'temp');
     
         return Response.json({
             message: 'Successfully retrieved lottery data',
