@@ -6,6 +6,8 @@ import { Field } from '@/common/components/Field';
 import { Modal, ModalProps } from '@/common/components/Modal';
 import { useToast } from '@/common/components/Toast';
 
+import { useUser } from '@/modules/toto/hooks/useUser';
+
 export interface useTotoSubmissionModalProps extends Omit<ModalProps, 'onSubmit'> {
     onSubmit?: (value: string) => void;
 }
@@ -19,27 +21,32 @@ export const useTotoSubmissionModal = ({ onSubmit, ...props }: useTotoSubmission
     const onOpen = () => setVisible(true);
     const onClose = () => setVisible(false);
     const onOpenChange = () => setVisible((prev) => !prev);
+    const userId = useUser();
 
     const handleOnClick = () => {
         if (onSubmit) {
             // TODO: add validation
             onSubmit(value);
-            // TODO: add fetch call
-
-            // TODO: add both toasts to .then() .catch()
-            // on successful submission
-            toast({
-                title: 'Success!',
-                description: 'Toto successfully submitted',
-                variant: 'success'
-            });
-
-            // on failed submission
-            toast({
-                title: 'Oh no!',
-                description: 'Failed to submit toto ticket',
-                variant: 'error'
-            });
+            // TODO: Option for user to select type of ticket
+            console.log(JSON.stringify({userId, numbers: value, type: 'SYSTEM6'}));
+            fetch('/api/tickets/store', {method: 'POST', body: JSON.stringify({userId, numbers: value, type: 'SYSTEM6'})})
+                .then(response => response.json())
+                .then(() => {
+                    // on successful submission
+                    toast({
+                        title: 'Success!',
+                        description: 'Toto successfully submitted',
+                        variant: 'success'
+                    });
+                })
+                .catch(() => {
+                    // on failed submission
+                    toast({
+                        title: 'Oh no!',
+                        description: 'Failed to submit toto ticket',
+                        variant: 'error'
+                    });
+                });
 
             setValue('');
         }
