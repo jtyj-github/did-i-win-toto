@@ -6,14 +6,14 @@ import { Main } from '@/common/components/Layout';
 import { TotoCard, } from '@/modules/toto/components/TotoCard';
 import { useTotoCards } from '@/modules/toto/hooks/useTotoCards';
 import { useTotoSubmissionModal } from '@/modules/toto/hooks/useTotoSubmissionModal';
-import { useUser } from '@/modules/toto/hooks/useUser';
 
 export default function Home() {
-    const { userId } = useUser();
     const { TotoCards } = useTotoCards();
 
 
     const USER_HAS_SUBMITTED_TICKET = true;
+    
+    //TODO: Change this to the actual ticket submitted by the user
     const MY_SUBMITTED_TICKET = {
         drawNumber: 3391,
         number: [1, 2, 3, 4, 5, 7, 14]
