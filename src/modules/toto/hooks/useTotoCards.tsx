@@ -6,14 +6,12 @@ export const useTotoCards = () => {
     const [TotoCards, setTotoCards] = useState<TotoCardProps[]>([]);
 
     useEffect(() => {
-        try {
             fetch('/api/tickets/cards')
                 .then(response => response.json())
                 .then(response => setTotoCards(response.data))
-        } catch (error) {
-            console.error('An error occured in obtaining your TOTO tickets', error);
-        }
-    }, []);
+                .catch(error => console.error('An error occured in obtaining TOTO draw results', error));
+        }, []
+    );
 
     return { TotoCards };
 }
