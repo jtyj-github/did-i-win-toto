@@ -12,7 +12,7 @@ export const useUserCards = () => {
         fetch('/api/tickets', {method: "POST", body: JSON.stringify({userId})})
             .then(response => response.json())
             .then(response => console.log(response))
-            .then(response => setUserCards(response.data))
+            //.then(response => setUserCards(response.data))
             .catch(error => console.error('An error occured in obtaining your TOTO tickets', error));
     }, [userId]);
 
