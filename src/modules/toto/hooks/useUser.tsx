@@ -12,8 +12,8 @@ export const useUser = () => {
             localStorage.setItem('userId', userId);
         }
         setUserId(userId);
-    }, [userId]);
+    }, []);
 
-    return { userId };
+    return userId;
 }
 
