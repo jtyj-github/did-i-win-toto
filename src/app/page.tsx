@@ -6,10 +6,14 @@ import { Main } from '@/common/components/Layout';
 import { TotoCard, } from '@/modules/toto/components/TotoCard';
 import { useTotoCards } from '@/modules/toto/hooks/useTotoCards';
 import { useTotoSubmissionModal } from '@/modules/toto/hooks/useTotoSubmissionModal';
+import { useUserCards } from '@/modules/toto/hooks/useUserCards';
 
 export default function Home() {
     const { TotoCards } = useTotoCards();
 
+    //TODO: Refactor after testing
+    const test = useUserCards();
+    console.log({test});
 
     const USER_HAS_SUBMITTED_TICKET = true;
     
