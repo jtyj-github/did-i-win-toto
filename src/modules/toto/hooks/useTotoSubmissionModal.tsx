@@ -28,7 +28,8 @@ export const useTotoSubmissionModal = ({ onSubmit, ...props }: useTotoSubmission
             // TODO: add validation
             onSubmit(value);
             // TODO: Option for user to select type of ticket
-            console.log(JSON.stringify({userId, numbers: value, type: 'SYSTEM6'}));
+
+            // call fetch to submit ticket
             fetch('/api/tickets/store', {method: 'POST', body: JSON.stringify({userId, numbers: value, type: 'SYSTEM6'})})
                 .then(response => response.json())
                 .then(() => {
