@@ -15,5 +15,5 @@ export const useUserCards = () => {
             .catch(error => console.error('An error occured in obtaining your TOTO tickets', error));
     }, [userId]);
 
-    return { userCards };
+    return userCards;
 }
