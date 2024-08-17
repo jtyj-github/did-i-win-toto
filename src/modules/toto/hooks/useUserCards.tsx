@@ -4,7 +4,7 @@ import { UserCardProps } from '@/modules/toto/components/TotoCard';
 import { useUser } from '@/modules/toto/hooks/useUser';
 
 export const useUserCards = () => {
-    const [userCards, setUserCards] = useState<UserCardProps[]>([]);
+    const [userCards, setUserCards] = useState<UserCardProps>({ userTickets: [] });
     const userId = useUser();
 
     useEffect(() => {
