@@ -10,42 +10,12 @@ import { useUserCards } from '@/modules/toto/hooks/useUserCards';
 
 export default function Home() {
     const { TotoCards } = useTotoCards();
-
-    const test = useUserCards();
-    console.log(test);
-
-    //TODO: Incorporate this into the useUserCards hook
-    const USER_HAS_SUBMITTED_TICKET = true;
+    let USER_HAS_SUBMITTED_TICKET = false;
     
-    //TODO: Change this to the actual ticket submitted by the user
-    const MY_SUBMITTED_TICKET = {
-        "userTickets": [
-            {
-                "drawNumbers": [
-                    14,
-                    5,
-                    3,
-                    7,
-                    1,
-                    42,
-                    32
-                ],
-                "type": "SYSTEM7",
-                "uuid": "c9b277b9-ca15-43be-97cc-88f407814acc"
-            },
-            {
-                "drawNumbers": [
-                    1,
-                    2,
-                    3,
-                    4,
-                    5,
-                    6
-                ],
-                "type": "SYSTEM6",
-                "uuid": "c9b277b9-ca15-43be-97cc-88f407814acc"
-            }
-        ],
+    // user submitted ticket
+    const MY_SUBMITTED_TICKET = useUserCards();
+    if (MY_SUBMITTED_TICKET) {
+        USER_HAS_SUBMITTED_TICKET = true;
     }
 
     const handleSubmitTicket = (value: string) => {
@@ -75,7 +45,7 @@ export default function Home() {
                             <div>
                                 {MY_SUBMITTED_TICKET.userTickets.map((ticket, ticketIndex) => (
                                     <div key={ticketIndex} className="flex flex-row justify-evenly py-3">
-                                    {ticket.drawNumbers.map((num, index) => (
+                                    {ticket.numbers.map((num, index) => (
                                     <div key={index} className="grid h-8 w-8 place-content-center">
                                         <Heading as="h2" className="font-mono text-3xl font-bold">
                                             {num}
