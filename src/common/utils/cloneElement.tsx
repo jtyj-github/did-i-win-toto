@@ -1,4 +1,4 @@
-import {
+import React, {
     ReactElement,
     isValidElement,
     Children,
@@ -24,7 +24,7 @@ export const cloneElement = ({ element, themeStyle, ...props }: cloneElement) =>
                         className: themeStyle
                             ? themeStyle({
                                   className: originalClassName // overriding icon classNames
-                              })
+                            })
                             : originalClassName,
                         ...props
                     });
