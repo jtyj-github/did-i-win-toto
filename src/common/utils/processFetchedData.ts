@@ -1,5 +1,7 @@
-import { fetch } from '@/common/utils/fetch';
 import fs from 'fs';
+
+import { fetch } from '@/common/utils/fetch';
+
 
 export async function getJSON<T>(url: string): Promise<T> {
     const data: T = await fetch(url)

@@ -9,6 +9,16 @@ export type WinningPool = {
     winners?: number;
 };
 
+export type userCard = {
+    numbers: number[];
+    type: string;
+    uuid: string;
+};
+
+export interface UserCardProps extends ComponentPropsWithoutRef<'div'> {
+    userTickets: userCard[];
+}
+
 export interface TotoCardProps extends ComponentPropsWithoutRef<'div'> {
     drawNumber: number;
     drawDate: string;

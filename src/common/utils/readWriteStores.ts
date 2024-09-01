@@ -1,7 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import { DIR_TEMP, DIR_UPLOAD } from './manageDirs';
+
 import dotenv from 'dotenv';
+
+import { DIR_TEMP, DIR_UPLOAD } from './manageDirs';
 
 dotenv.config();
 const isProd = process.env.NODE_ENV === 'production';
