@@ -1,6 +1,7 @@
-import { Browser } from 'puppeteer';
-import prisma from '@/common/lib/prisma';
 import { TotoResult } from '@prisma/client';
+import { Browser } from 'puppeteer';
+
+import prisma from '@/common/lib/prisma';
 
 export default async function totoScrape(browser: Browser): Promise<TotoResult[]> {
     const page = await browser.newPage();
@@ -30,9 +31,9 @@ export default async function totoScrape(browser: Browser): Promise<TotoResult[]
 
             const winningPool: { group: string; prize: number; winners: number; }[] = [];
             const parseWinningString = /[^\d.]/g;
-            const winningPoolNode = item.querySelector('.tableWinningPoolwinningPool');
+            const winningPoolNode = item.querySelector('.tableWinningShares');
             const winningShareRows = winningPoolNode ? Array.from(winningPoolNode.querySelectorAll('tr')).slice(2) : [];
-
+            
             for (const row of winningShareRows) {
                 const columns = Array.from(row.querySelectorAll('td'));
                 const group = columns[0].textContent?.trim() || '';
