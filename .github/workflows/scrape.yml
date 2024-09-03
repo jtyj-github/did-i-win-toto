@@ -1,0 +1,36 @@
+name: Toto Scraper Workflow
+
+on:
+    schedule:
+        - cron: '0 0 * * *' # Run daily at midnight UTC
+    workflow_dispatch: # Allow manual trigger
+
+jobs:
+    call-api:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: Use Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '18'
+            - name: Install dependencies
+              run: pnpm install
+
+            - name: Call API and process data
+              run: node scripts/callApi.js
+
+            - name: Check for changes
+              id: git-check
+              run: |
+                  git status --porcelain
+                  echo "changes=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
+
+            - name: Commit and push if changes exist
+              if: steps.git-check.outputs.changes > 0
+              run: |
+                  git config user.name github-actions
+                  git config user.email github-actions@github.com
+                  git add .
+                  git commit -m "Automatated Toto Scrape"
+                  git push
