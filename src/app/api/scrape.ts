@@ -71,4 +71,4 @@ const main = async () => {
     createTopicsFile();
 };
 
-export default main;
+main();
