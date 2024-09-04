@@ -5,6 +5,7 @@ import puppeteer, { Browser } from 'puppeteer';
 import { getJSON } from '@/common/utils/processFetchedData';
 import { writeStores } from '@/common/utils/readWriteStores';
 import totoScrape from '@/common/utils/scraper';
+import { exit } from 'process';
 
 dotenv.config();
 const { NODE_ENV, SERVER_URL } = process.env;
@@ -71,4 +72,7 @@ const main = async () => {
     createTopicsFile();
 };
 
-main();
+main().then(() => exit(0)).catch((error) => {
+    console.error(error);
+    exit(1);
+});
