@@ -24,7 +24,7 @@ jobs:
               run: pnpm install
 
             - name: Call API and process data
-              run: node src/app/api/scrape.ts
+              run: node src/modules/scripts/scrape.ts
 
             - name: Check for changes
               id: git-check
