@@ -8,7 +8,7 @@ import { DIR_TEMP, DIR_UPLOAD } from './manageDirs';
 dotenv.config();
 const isProd = process.env.NODE_ENV === 'production';
 
-export function readStores<T>(fileName: string, type = 'temp'): T {
+export function readStores<T>(fileName: string, type = 'upload'): T {
     const folderLocation = type === 'upload' ? DIR_UPLOAD : DIR_TEMP;
     const filePath = path.join(folderLocation, fileName);
 
