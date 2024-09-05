@@ -15,10 +15,10 @@ let notificationList: TotoResult[];
 
 async function writeServerFile<T>(fileName: string): Promise<void> {
     const url = `${SERVER_URL}/${fileName}`;
-    console.log(`Fetching ${fileName}.json from ${url}`);
+    console.log(`Fetching ${fileName} from ${url}`);
     const list =
         (await getJSON<T>(url).catch(() => {
-            console.error(`Error: ${fileName}.json does not exist on Server.`);
+            console.error(`Error: ${fileName} does not exist on Server.`);
             return {} as T;
         })) || {};
 
@@ -31,7 +31,7 @@ async function processResult(browser: Browser) {
     const fileName = 'sg_lottery.json';
     try {
         if (isProd || isTest) {
-            await writeServerFile<TotoResult>(`v1/${fileName}`);
+            await writeServerFile<TotoResult>(`${fileName}`);
         }
         const data = await totoScrape(browser);
         notificationList = data;
@@ -48,7 +48,7 @@ const createTopicsFile = () => {
             return {
                 title: `Toto Results for Draw ${item.drawNumber}`,
                 message: `The winning numbers for Toto Draw ${item.drawNumber} are ${item.winningNum.join(', ')}.`,
-                url: `${SERVER_URL}/uploads/v1/sg_lottery.json`
+                url: `/uploads/sg_lottery.json`
             };
         })
     };

@@ -6,10 +6,11 @@ on:
     workflow_dispatch: # Allow manual trigger
 
 jobs:
-    call-api:
+    call-scrape:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
+
             - name: Use Node.js
               uses: actions/setup-node@v3
               with:
@@ -23,8 +24,8 @@ jobs:
             - name: Install dependencies
               run: pnpm install
 
-            - name: Call API and process data
-              run: node src/modules/toto/scripts/scrape.ts
+            - name: Scrape TOTO results
+              run: pnpm build
 
             - name: Check for changes
               id: git-check
@@ -35,8 +36,8 @@ jobs:
             - name: Commit and push if changes exist
               if: steps.git-check.outputs.changes > 0
               run: |
-                  git config user.name github-actions
-                  git config user.email github-actions@github.com
+                  git config user.name "github-actions"
+                  git config user.email "github-actions@github.com"
                   git add .
-                  git commit -m "Automatated Toto Scrape"
+                  git commit -m "Automated Toto Scrape"
                   git push
