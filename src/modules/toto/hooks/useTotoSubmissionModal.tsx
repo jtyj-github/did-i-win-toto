@@ -79,7 +79,7 @@ export const useTotoSubmissionModal = ({ ...props }: UseTotoSubmissionModalProps
     const {
         control,
         handleSubmit,
-        formState: { isValid, errors }
+        formState: { isValid }
     } = useForm<TotoInputSchema>({
         defaultValues: {
             values: []
@@ -133,6 +133,7 @@ export const useTotoSubmissionModal = ({ ...props }: UseTotoSubmissionModalProps
 
         onClose();
     };
+
     const renderModal = (
         <Modal open={visible} onOpenChange={onOpenChange} {...props}>
             <Modal.Content>
@@ -162,16 +163,20 @@ export const useTotoSubmissionModal = ({ ...props }: UseTotoSubmissionModalProps
                         </DropdownMenu>
 
                         {/* Input fields */}
-                        <Field error={!!errors} label="Enter toto number">
+                        <Field label="Enter toto number">
                             <div className="flex flex-wrap gap-2">
+                                {/* There's a bug where the ref shifts as user inputs anything */}
+                                {/* this happens due to re-rendering of the fields on every input */}
+                                {/* causing the focus to reset */}
+                                {/* `autoFocus` is added as a temporary solution */}
                                 {fields.map((field, index) => (
                                     <Controller
-                                        key={`controller-field-${index}`}
+                                        key={field.id}
                                         control={control}
                                         name={`values.${index}` as const}
                                         render={() => (
                                             <Input
-                                                key={field.id}
+                                                autoFocus
                                                 className="w-12 text-center text-4xl"
                                                 contentProps={{ className: 'h-20 max-h-20' }}
                                                 id={field.id}
