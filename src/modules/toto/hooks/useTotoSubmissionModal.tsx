@@ -154,7 +154,7 @@ export const useTotoSubmissionModal = ({ ...props }: UseTotoSubmissionModalProps
                                 {Object.values(options).map((option) => (
                                     <DropdownMenu.Item
                                         key={option.value}
-                                        onClick={() => setType(option.value)}>
+                                        onClick={() => setType(option.value as SystemType)}>
                                         {option.label}
                                     </DropdownMenu.Item>
                                 ))}
