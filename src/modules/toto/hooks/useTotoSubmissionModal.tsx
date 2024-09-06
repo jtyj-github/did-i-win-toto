@@ -111,7 +111,7 @@ export const useTotoSubmissionModal = ({ ...props }: UseTotoSubmissionModalProps
         // call fetch to submit ticket
         fetch('/api/tickets/store', {
             method: 'POST',
-            body: JSON.stringify({ userId, numbers: value, type: 'SYSTEM6' })
+            body: JSON.stringify({ userId, numbers: value, type })
         })
             .then((response) => response.json())
             .then(() => {
@@ -169,30 +169,28 @@ export const useTotoSubmissionModal = ({ ...props }: UseTotoSubmissionModalProps
                                         key={`controller-field-${index}`}
                                         control={control}
                                         name={`values.${index}` as const}
-                                        render={() => {
-                                            return (
-                                                <Input
-                                                    key={field.id}
-                                                    className="w-12 text-center text-4xl"
-                                                    contentProps={{ className: 'h-20 max-h-20' }}
-                                                    id={field.id}
-                                                    max={49}
-                                                    min={1}
-                                                    type="number"
-                                                    value={`${field.number}`}
-                                                    onChange={(e) => {
-                                                        if (e.target.valueAsNumber < 1)
-                                                            update(index, { number: 1 });
-                                                        else if (e.target.valueAsNumber > 49)
-                                                            update(index, { number: 49 });
-                                                        else
-                                                            update(index, {
-                                                                number: e.target.valueAsNumber
-                                                            });
-                                                    }}
-                                                />
-                                            );
-                                        }}
+                                        render={() => (
+                                            <Input
+                                                key={field.id}
+                                                className="w-12 text-center text-4xl"
+                                                contentProps={{ className: 'h-20 max-h-20' }}
+                                                id={field.id}
+                                                max={49}
+                                                min={1}
+                                                type="number"
+                                                value={`${field.number}`}
+                                                onChange={(e) => {
+                                                    if (e.target.valueAsNumber < 1)
+                                                        update(index, { number: 1 });
+                                                    else if (e.target.valueAsNumber > 49)
+                                                        update(index, { number: 49 });
+                                                    else
+                                                        update(index, {
+                                                            number: e.target.valueAsNumber
+                                                        });
+                                                }}
+                                            />
+                                        )}
                                     />
                                 ))}
                             </div>
