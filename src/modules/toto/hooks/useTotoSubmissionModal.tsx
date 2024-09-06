@@ -10,6 +10,7 @@ import { Field } from '@/common/components/Field';
 import { Input } from '@/common/components/Input';
 import { Modal, ModalProps } from '@/common/components/Modal';
 import { useToast } from '@/common/components/Toast';
+import { SystemType } from '@/common/types/toto';
 
 import { useUser } from '@/modules/toto/hooks/useUser';
 
@@ -31,49 +32,49 @@ type TotoInputSchema = z.infer<typeof totoInputSchema>;
 const options: { [key: string]: { label: string; value: string; numOfInputs: number } } = {
     ORDINARY: {
         label: 'Ordinary',
-        value: 'ORDINARY',
+        value: SystemType.ORDINARY,
         numOfInputs: 6
     },
     SYSTEM7: {
         label: 'System 7',
-        value: 'SYSTEM7',
+        value: SystemType.SYSTEM7,
         numOfInputs: 7
     },
     SYSTEM8: {
         label: 'System 8',
-        value: 'SYSTEM8',
+        value: SystemType.SYSTEM8,
         numOfInputs: 8
     },
     SYSTEM9: {
         label: 'System 9',
-        value: 'SYSTEM9',
+        value: SystemType.SYSTEM9,
         numOfInputs: 9
     },
     SYSTEM10: {
         label: 'System 10',
-        value: 'SYSTEM10',
+        value: SystemType.SYSTEM10,
         numOfInputs: 10
     },
     SYSTEM11: {
         label: 'System 11',
-        value: 'SYSTEM11',
+        value: SystemType.SYSTEM11,
         numOfInputs: 11
     },
     SYSTEM12: {
         label: 'System 12',
-        value: 'SYSTEM12',
+        value: SystemType.SYSTEM12,
         numOfInputs: 12
     },
     SYSTEMROLL: {
         label: 'System Roll',
-        value: 'SYSTEMROLL',
+        value: SystemType.SYSTEMROLL,
         numOfInputs: 5
     }
 };
 
 export const useTotoSubmissionModal = ({ ...props }: UseTotoSubmissionModalProps) => {
     const [visible, setVisible] = useState(false);
-    const [type, setType] = useState('ORDINARY');
+    const [type, setType] = useState(SystemType.ORDINARY);
 
     const {
         control,
