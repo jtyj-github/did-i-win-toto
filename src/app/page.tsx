@@ -14,7 +14,8 @@ export default function Home() {
 
     // user submitted ticket
     const MY_SUBMITTED_TICKET = useUserCards();
-    if (MY_SUBMITTED_TICKET) {
+    console.log(MY_SUBMITTED_TICKET);
+    if (MY_SUBMITTED_TICKET.userTickets.length > 0) {
         USER_HAS_SUBMITTED_TICKET = true;
     }
 
@@ -34,7 +35,7 @@ export default function Home() {
                         My Tickets
                     </Heading>
                     <div className="space-y-4 rounded-xl border border-element-primary bg-surface-elevated p-3">
-                        {MY_SUBMITTED_TICKET && (
+                {MY_SUBMITTED_TICKET && (
                             <div>
                                 {MY_SUBMITTED_TICKET.userTickets.map((ticket, ticketIndex) => (
                                     <div
@@ -54,7 +55,7 @@ export default function Home() {
                                     </div>
                                 ))}
                             </div>
-                        )}
+                        )} 
                     </div>
                 </div>
             )}
