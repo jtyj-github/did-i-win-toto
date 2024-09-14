@@ -6,8 +6,8 @@ import { Main } from '@/common/components/Layout';
 import { TotoCard } from '@/modules/toto/components/TotoCard';
 import { useTotoCards } from '@/modules/toto/hooks/useTotoCards';
 import { useTotoSubmissionModal } from '@/modules/toto/hooks/useTotoSubmissionModal';
-import { useUserCards } from '@/modules/toto/hooks/useUserCards';
 import { useUser } from '@/modules/toto/hooks/useUser';
+import { useUserCards } from '@/modules/toto/hooks/useUserCards';
 
 export default function Home() {
     const userId = useUser();
@@ -17,7 +17,7 @@ export default function Home() {
     // user submitted ticket
     const MY_SUBMITTED_TICKET = useUserCards(userId);
     console.log(MY_SUBMITTED_TICKET);
-    if (MY_SUBMITTED_TICKET.userTickets.length > 0) {
+    if (MY_SUBMITTED_TICKET) {
         USER_HAS_SUBMITTED_TICKET = true;
     }
 
