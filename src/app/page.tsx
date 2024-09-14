@@ -14,7 +14,7 @@ export default function Home() {
     const { TotoCards } = useTotoCards();
 
     // fetch user submitted tickets
-    const MY_SUBMITTED_TICKET = useUserCards(userId);
+    const { userTickets } = useUserCards(userId);
 
     const { onOpen, renderModal } = useTotoSubmissionModal({}, userId);
 
@@ -26,14 +26,14 @@ export default function Home() {
                 </Heading>
                 <Button onClick={onOpen}>Submit my ticket</Button>
             </div>
-            {MY_SUBMITTED_TICKET.userTickets.length > 0 && (
+            {userTickets.length > 0 && (
                 <div className="flex flex-col gap-4">
                     <Heading as="h1" className="text-lg font-bold">
                         My Tickets
                     </Heading>
                     <div className="space-y-4 rounded-xl border border-element-primary bg-surface-elevated p-3">
                             <div>
-                                {MY_SUBMITTED_TICKET.userTickets.map((ticket, ticketIndex) => (
+                                {userTickets.map((ticket, ticketIndex) => (
                                     <div
                                         key={ticketIndex}
                                         className="flex flex-row justify-evenly py-3">
