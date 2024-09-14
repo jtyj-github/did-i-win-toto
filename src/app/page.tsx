@@ -12,14 +12,9 @@ import { useUserCards } from '@/modules/toto/hooks/useUserCards';
 export default function Home() {
     const userId = useUser();
     const { TotoCards } = useTotoCards();
-    let USER_HAS_SUBMITTED_TICKET = false;
 
-    // user submitted ticket
+    // fetch user submitted tickets
     const MY_SUBMITTED_TICKET = useUserCards(userId);
-    console.log(MY_SUBMITTED_TICKET);
-    if (MY_SUBMITTED_TICKET.userTickets.length > 0) {
-        USER_HAS_SUBMITTED_TICKET = true;
-    }
 
     const { onOpen, renderModal } = useTotoSubmissionModal({}, userId);
 
@@ -31,13 +26,12 @@ export default function Home() {
                 </Heading>
                 <Button onClick={onOpen}>Submit my ticket</Button>
             </div>
-            {USER_HAS_SUBMITTED_TICKET && (
+            {MY_SUBMITTED_TICKET.userTickets.length > 0 && (
                 <div className="flex flex-col gap-4">
                     <Heading as="h1" className="text-lg font-bold">
                         My Tickets
                     </Heading>
                     <div className="space-y-4 rounded-xl border border-element-primary bg-surface-elevated p-3">
-                {MY_SUBMITTED_TICKET && (
                             <div>
                                 {MY_SUBMITTED_TICKET.userTickets.map((ticket, ticketIndex) => (
                                     <div
@@ -57,7 +51,6 @@ export default function Home() {
                                     </div>
                                 ))}
                             </div>
-                        )} 
                     </div>
                 </div>
             )}
