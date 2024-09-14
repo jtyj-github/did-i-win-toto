@@ -7,19 +7,21 @@ import { TotoCard } from '@/modules/toto/components/TotoCard';
 import { useTotoCards } from '@/modules/toto/hooks/useTotoCards';
 import { useTotoSubmissionModal } from '@/modules/toto/hooks/useTotoSubmissionModal';
 import { useUserCards } from '@/modules/toto/hooks/useUserCards';
+import { useUser } from '@/modules/toto/hooks/useUser';
 
 export default function Home() {
+    const userId = useUser();
     const { TotoCards } = useTotoCards();
     let USER_HAS_SUBMITTED_TICKET = false;
 
     // user submitted ticket
-    const MY_SUBMITTED_TICKET = useUserCards();
+    const MY_SUBMITTED_TICKET = useUserCards(userId);
     console.log(MY_SUBMITTED_TICKET);
     if (MY_SUBMITTED_TICKET.userTickets.length > 0) {
         USER_HAS_SUBMITTED_TICKET = true;
     }
 
-    const { onOpen, renderModal } = useTotoSubmissionModal({});
+    const { onOpen, renderModal } = useTotoSubmissionModal({}, userId);
 
     return (
         <Main className="gap-4">
