@@ -17,7 +17,7 @@ export default function Home() {
     // user submitted ticket
     const MY_SUBMITTED_TICKET = useUserCards(userId);
     console.log(MY_SUBMITTED_TICKET);
-    if (MY_SUBMITTED_TICKET) {
+    if (MY_SUBMITTED_TICKET.userTickets.length > 0) {
         USER_HAS_SUBMITTED_TICKET = true;
     }
 
