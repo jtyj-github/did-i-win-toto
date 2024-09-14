@@ -12,8 +12,6 @@ import { Modal, ModalProps } from '@/common/components/Modal';
 import { useToast } from '@/common/components/Toast';
 import { SystemType } from '@/common/types/toto';
 
-import { useUser } from '@/modules/toto/hooks/useUser';
-
 export interface UseTotoSubmissionModalProps extends Omit<ModalProps, 'onSubmit'> {}
 
 const totoInputSchema = z.object({
@@ -72,7 +70,7 @@ const options: { [key: string]: { label: string; value: string; numOfInputs: num
     }
 };
 
-export const useTotoSubmissionModal = ({ ...props }: UseTotoSubmissionModalProps) => {
+export const useTotoSubmissionModal = ({ ...props }: UseTotoSubmissionModalProps, userId: string) => {
     const [visible, setVisible] = useState(false);
     const [type, setType] = useState(SystemType.ORDINARY);
 
@@ -103,7 +101,6 @@ export const useTotoSubmissionModal = ({ ...props }: UseTotoSubmissionModalProps
     const onOpen = () => setVisible(true);
     const onClose = () => setVisible(false);
     const onOpenChange = () => setVisible((prev) => !prev);
-    const userId = useUser();
 
     const onSubmit: SubmitHandler<TotoInputSchema> = (data) => {
         const value = data.values.map((field) => field.number);
@@ -131,7 +128,7 @@ export const useTotoSubmissionModal = ({ ...props }: UseTotoSubmissionModalProps
                 });
             });
 
-        onClose();
+            onClose();
     };
 
     const renderModal = (
