@@ -21,7 +21,7 @@ model TotoTicket {
 }
 
 enum System {
-  SYSTEM6
+  ORDINARY
   SYSTEM7
   SYSTEM8
   SYSTEM9

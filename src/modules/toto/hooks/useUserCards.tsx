@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 
 import { UserCardProps } from '@/modules/toto/components/TotoCard';
-import { useUser } from '@/modules/toto/hooks/useUser';
 
-export const useUserCards = () => {
+export const useUserCards = (userId: string) => {
     const [userCards, setUserCards] = useState<UserCardProps>({ userTickets: [] });
-    const userId = useUser();
 
     useEffect(() => {
         if (userId) {
