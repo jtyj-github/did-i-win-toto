@@ -10,6 +10,7 @@ export interface ToastProps extends Omit<ComponentPropsWithoutRef<'li'>, 'onPaus
     onPause?: () => void;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const Toast = ({ ..._props }: ToastProps) => {
     const { toasts } = useToast();
 
