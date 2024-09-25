@@ -15,15 +15,36 @@ import { SystemType } from '@/common/types/toto';
 export interface UseTotoSubmissionModalProps extends Omit<ModalProps, 'onSubmit'> {}
 
 const totoInputSchema = z.object({
-    values: z.array(
-        z.object({
-            number: z
-                .number()
-                .gte(1, 'Cannot be lower than 1')
-                .lte(49, 'Cannot be greater than 49')
-                .int()
+    values: z
+        .array(
+            z.object({
+                number: z.coerce
+                    .number()
+                    .gte(1, 'Cannot be lower than 1')
+                    .lte(49, 'Cannot be greater than 49')
+                    .int()
+            })
+        )
+        .superRefine((data, ctx) => {
+            data.some(({ number }, index) => {
+                if (
+                    data
+                        .slice(index + 1)
+                        .some(
+                            ({ number: otherNumber }) =>
+                                number !== 0 && otherNumber !== 0 && number === otherNumber
+                        )
+                ) {
+                    ctx.addIssue({
+                        message: 'Duplicate number found',
+                        code: z.ZodIssueCode.custom
+                    });
+                    return z.NEVER;
+                }
+            });
+
+            return true;
         })
-    )
 });
 type TotoInputSchema = z.infer<typeof totoInputSchema>;
 
@@ -70,14 +91,17 @@ const options: { [key: string]: { label: string; value: string; numOfInputs: num
     }
 };
 
-export const useTotoSubmissionModal = ({ ...props }: UseTotoSubmissionModalProps, userId: string) => {
+export const useTotoSubmissionModal = (
+    { ...props }: UseTotoSubmissionModalProps,
+    userId: string
+) => {
     const [visible, setVisible] = useState(false);
     const [type, setType] = useState(SystemType.ORDINARY);
 
     const {
         control,
         handleSubmit,
-        formState: { isValid }
+        formState: { isValid, errors }
     } = useForm<TotoInputSchema>({
         defaultValues: {
             values: []
@@ -92,7 +116,7 @@ export const useTotoSubmissionModal = ({ ...props }: UseTotoSubmissionModalProps
 
     useEffect(() => {
         const numOfInputs = options[type].numOfInputs;
-        replace(Array.from({ length: numOfInputs }, () => ({ number: NaN })));
+        replace(Array.from({ length: numOfInputs }, () => ({ number: 0 })));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [type, visible]);
 
@@ -128,7 +152,7 @@ export const useTotoSubmissionModal = ({ ...props }: UseTotoSubmissionModalProps
                 });
             });
 
-            onClose();
+        onClose();
     };
 
     const renderModal = (
@@ -160,7 +184,10 @@ export const useTotoSubmissionModal = ({ ...props }: UseTotoSubmissionModalProps
                         </DropdownMenu>
 
                         {/* Input fields */}
-                        <Field label="Enter toto number">
+                        <Field
+                            error={!!errors?.values?.message}
+                            label="Enter toto number"
+                            message={errors?.values?.message}>
                             <div className="flex flex-wrap gap-2">
                                 {/* There's a bug where the ref shifts as user inputs anything */}
                                 {/* this happens due to re-rendering of the fields on every input */}
@@ -180,7 +207,7 @@ export const useTotoSubmissionModal = ({ ...props }: UseTotoSubmissionModalProps
                                                 max={49}
                                                 min={1}
                                                 type="number"
-                                                value={`${field.number}`}
+                                                value={field.number === 0 ? '' : `${field.number}`}
                                                 onChange={(e) => {
                                                     if (e.target.valueAsNumber < 1)
                                                         update(index, { number: 1 });
