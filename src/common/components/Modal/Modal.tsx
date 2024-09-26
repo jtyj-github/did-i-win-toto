@@ -6,7 +6,7 @@ import { ModalBody } from './ModalBody';
 import { ModalContent } from './ModalContent';
 import { ModalFooter } from './ModalFooter';
 import { ModalHeader } from './ModalHeader';
-import ModalProvider from './ModalProvider';
+import { ModalProvider } from './ModalProvider';
 
 export interface ModalProps extends ComponentPropsWithoutRef<'div'>, ModalVariants, DialogProps {
     hasCloseButton?: boolean;

@@ -1,5 +1,5 @@
 'use client';
-import { Icon as Iconify, IconifyIconProps } from '@iconify-icon/react';
+import { Icon as Iconify, type IconifyIconProps } from '@iconify-icon/react';
 
 type IconProps = Omit<IconifyIconProps, 'ref'>;
 
