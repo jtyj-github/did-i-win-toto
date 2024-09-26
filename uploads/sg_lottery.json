@@ -1,0 +1,292 @@
+[
+    {
+        "id": "66f5846df3c5c6bbdbc22e42",
+        "drawNumber": 4011,
+        "drawDate": "Mon, 23 Sep 2024",
+        "winningNum": ["9", "20", "22", "32", "37", "47"],
+        "additionalNum": "1",
+        "winningPool": [
+            {
+                "id": "66f5846df3c5c6bbdbc22e43",
+                "group": "Group 1",
+                "prize": 0,
+                "winners": 0,
+                "resultId": "66f5846df3c5c6bbdbc22e42"
+            },
+            {
+                "id": "66f5846df3c5c6bbdbc22e44",
+                "group": "Group 2",
+                "prize": 131911,
+                "winners": 2,
+                "resultId": "66f5846df3c5c6bbdbc22e42"
+            },
+            {
+                "id": "66f5846df3c5c6bbdbc22e45",
+                "group": "Group 3",
+                "prize": 1564,
+                "winners": 116,
+                "resultId": "66f5846df3c5c6bbdbc22e42"
+            },
+            {
+                "id": "66f5846df3c5c6bbdbc22e46",
+                "group": "Group 4",
+                "prize": 429,
+                "winners": 231,
+                "resultId": "66f5846df3c5c6bbdbc22e42"
+            },
+            {
+                "id": "66f5846df3c5c6bbdbc22e47",
+                "group": "Group 5",
+                "prize": 50,
+                "winners": 5579,
+                "resultId": "66f5846df3c5c6bbdbc22e42"
+            },
+            {
+                "id": "66f5846df3c5c6bbdbc22e48",
+                "group": "Group 6",
+                "prize": 25,
+                "winners": 6960,
+                "resultId": "66f5846df3c5c6bbdbc22e42"
+            },
+            {
+                "id": "66f5846df3c5c6bbdbc22e49",
+                "group": "Group 7",
+                "prize": 10,
+                "winners": 101894,
+                "resultId": "66f5846df3c5c6bbdbc22e42"
+            }
+        ]
+    },
+    {
+        "id": "66f5846df3c5c6bbdbc22e4a",
+        "drawNumber": 4010,
+        "drawDate": "Thu, 19 Sep 2024",
+        "winningNum": ["7", "13", "17", "22", "31", "37"],
+        "additionalNum": "1",
+        "winningPool": [
+            {
+                "id": "66f5846ef3c5c6bbdbc22e4b",
+                "group": "Group 1",
+                "prize": 1456186,
+                "winners": 4,
+                "resultId": "66f5846df3c5c6bbdbc22e4a"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e4c",
+                "group": "Group 2",
+                "prize": 7844,
+                "winners": 76,
+                "resultId": "66f5846df3c5c6bbdbc22e4a"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e4d",
+                "group": "Group 3",
+                "prize": 699,
+                "winners": 587,
+                "resultId": "66f5846df3c5c6bbdbc22e4a"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e4e",
+                "group": "Group 4",
+                "prize": 160,
+                "winners": 1398,
+                "resultId": "66f5846df3c5c6bbdbc22e4a"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e4f",
+                "group": "Group 5",
+                "prize": 50,
+                "winners": 16552,
+                "resultId": "66f5846df3c5c6bbdbc22e4a"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e50",
+                "group": "Group 6",
+                "prize": 25,
+                "winners": 21402,
+                "resultId": "66f5846df3c5c6bbdbc22e4a"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e51",
+                "group": "Group 7",
+                "prize": 10,
+                "winners": 254884,
+                "resultId": "66f5846df3c5c6bbdbc22e4a"
+            }
+        ]
+    },
+    {
+        "id": "66f5846ef3c5c6bbdbc22e52",
+        "drawNumber": 4009,
+        "drawDate": "Mon, 16 Sep 2024",
+        "winningNum": ["2", "8", "15", "19", "33", "38"],
+        "additionalNum": "21",
+        "winningPool": [
+            {
+                "id": "66f5846ef3c5c6bbdbc22e53",
+                "group": "Group 1",
+                "prize": 0,
+                "winners": 0,
+                "resultId": "66f5846ef3c5c6bbdbc22e52"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e54",
+                "group": "Group 2",
+                "prize": 53450,
+                "winners": 7,
+                "resultId": "66f5846ef3c5c6bbdbc22e52"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e55",
+                "group": "Group 3",
+                "prize": 1446,
+                "winners": 178,
+                "resultId": "66f5846ef3c5c6bbdbc22e52"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e56",
+                "group": "Group 4",
+                "prize": 286,
+                "winners": 491,
+                "resultId": "66f5846ef3c5c6bbdbc22e52"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e57",
+                "group": "Group 5",
+                "prize": 50,
+                "winners": 10777,
+                "resultId": "66f5846ef3c5c6bbdbc22e52"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e58",
+                "group": "Group 6",
+                "prize": 25,
+                "winners": 12843,
+                "resultId": "66f5846ef3c5c6bbdbc22e52"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e59",
+                "group": "Group 7",
+                "prize": 10,
+                "winners": 179769,
+                "resultId": "66f5846ef3c5c6bbdbc22e52"
+            }
+        ]
+    },
+    {
+        "id": "66f5846ef3c5c6bbdbc22e5a",
+        "drawNumber": 4008,
+        "drawDate": "Thu, 12 Sep 2024",
+        "winningNum": ["5", "6", "14", "36", "45", "49"],
+        "additionalNum": "12",
+        "winningPool": [
+            {
+                "id": "66f5846ef3c5c6bbdbc22e5b",
+                "group": "Group 1",
+                "prize": 0,
+                "winners": 0,
+                "resultId": "66f5846ef3c5c6bbdbc22e5a"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e5c",
+                "group": "Group 2",
+                "prize": 64002,
+                "winners": 4,
+                "resultId": "66f5846ef3c5c6bbdbc22e5a"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e5d",
+                "group": "Group 3",
+                "prize": 1693,
+                "winners": 104,
+                "resultId": "66f5846ef3c5c6bbdbc22e5a"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e5e",
+                "group": "Group 4",
+                "prize": 301,
+                "winners": 319,
+                "resultId": "66f5846ef3c5c6bbdbc22e5a"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e5f",
+                "group": "Group 5",
+                "prize": 50,
+                "winners": 5025,
+                "resultId": "66f5846ef3c5c6bbdbc22e5a"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e60",
+                "group": "Group 6",
+                "prize": 25,
+                "winners": 8996,
+                "resultId": "66f5846ef3c5c6bbdbc22e5a"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e61",
+                "group": "Group 7",
+                "prize": 10,
+                "winners": 95443,
+                "resultId": "66f5846ef3c5c6bbdbc22e5a"
+            }
+        ]
+    },
+    {
+        "id": "66f5846ef3c5c6bbdbc22e62",
+        "drawNumber": 4007,
+        "drawDate": "Mon, 09 Sep 2024",
+        "winningNum": ["1", "4", "10", "16", "18", "29"],
+        "additionalNum": "6",
+        "winningPool": [
+            {
+                "id": "66f5846ef3c5c6bbdbc22e63",
+                "group": "Group 1",
+                "prize": 5889771,
+                "winners": 1,
+                "resultId": "66f5846ef3c5c6bbdbc22e62"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e64",
+                "group": "Group 2",
+                "prize": 43586,
+                "winners": 14,
+                "resultId": "66f5846ef3c5c6bbdbc22e62"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e65",
+                "group": "Group 3",
+                "prize": 1231,
+                "winners": 341,
+                "resultId": "66f5846ef3c5c6bbdbc22e62"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e66",
+                "group": "Group 4",
+                "prize": 169,
+                "winners": 1360,
+                "resultId": "66f5846ef3c5c6bbdbc22e62"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e67",
+                "group": "Group 5",
+                "prize": 50,
+                "winners": 16346,
+                "resultId": "66f5846ef3c5c6bbdbc22e62"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e68",
+                "group": "Group 6",
+                "prize": 25,
+                "winners": 28583,
+                "resultId": "66f5846ef3c5c6bbdbc22e62"
+            },
+            {
+                "id": "66f5846ef3c5c6bbdbc22e69",
+                "group": "Group 7",
+                "prize": 10,
+                "winners": 265044,
+                "resultId": "66f5846ef3c5c6bbdbc22e62"
+            }
+        ]
+    }
+]
