@@ -25,7 +25,7 @@ jobs:
               run: pnpm install
 
             - name: Scrape TOTO results
-              run: pnpm build
+              run: pnpm run build
 
             - name: Check for changes
               id: git-check
