@@ -1,7 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
-// eslint-disable-next-line import/named
-import { Controller, SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
+import { Controller, useFieldArray, useForm, type SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 
 import { Button } from '@/common/components/Button';

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import Link from 'next/link';
 import {
     Children,
@@ -55,7 +54,6 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonOr
             iconRight,
             iconOnly,
             className,
-            isResponsive = false,
             loading = false,
             asChild = false,
             variant = 'primary',
@@ -75,7 +73,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonOr
             ({ children: _children, ..._props }: ButtonOrLinkProps) => {
                 // Keep button as as=button if disabled to allow onClick override
                 if (_props.as === 'a' && !props.disabled) {
-                    const { external, href, as, ...baseLinkProps } = _props;
+                    const { external, href, as: _as, ...baseLinkProps } = _props;
 
                     // External link
                     if (external) {
@@ -98,7 +96,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonOr
                         </Link>
                     );
                 } else {
-                    const { as, ...buttonProps } = _props;
+                    const { as: _as, ...buttonProps } = _props;
                     return (
                         <button
                             {...(buttonProps as ButtonProps)}

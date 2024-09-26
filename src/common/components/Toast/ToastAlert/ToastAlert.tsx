@@ -54,6 +54,7 @@ export const ToastAlert = ({
                 })}
             />
         );
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [icon]);
 
     const {
