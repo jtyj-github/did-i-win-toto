@@ -19,12 +19,17 @@ jobs:
             - name: Install pnpm
               uses: pnpm/action-setup@v2
               with:
-                  version: 9.6.0  
+                  version: 9.6.0 
+            
+            - name: Load prisma schema
+              uses: npx prisma generate
 
             - name: Install dependencies
               run: pnpm install --no-frozen-lockfile
 
             - name: Scrape TOTO results
+              env:
+                DATABASE_URL: ${{ secrets.DATABASE_URL }}
               run: pnpm run build
 
             - name: Commit and push
