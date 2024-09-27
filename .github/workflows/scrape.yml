@@ -22,7 +22,7 @@ jobs:
                   version: 9.6.0 
             
             - name: Load prisma schema
-              uses: npx prisma generate
+              run: npx prisma generate
 
             - name: Install dependencies
               run: pnpm install --no-frozen-lockfile
