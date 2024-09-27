@@ -19,6 +19,10 @@ jobs:
               with:
                   node-version: '20'
 
+            - name: Get runner's public IP
+              run: curl -s ifconfig.me
+              id: get_ip
+                
             - name: Install pnpm
               uses: pnpm/action-setup@v2
               with:
