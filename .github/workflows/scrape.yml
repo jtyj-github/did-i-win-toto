@@ -5,6 +5,9 @@ on:
         - cron: '0 0 * * *' # Run daily at midnight UTC
     workflow_dispatch: # Allow manual trigger
 
+env:
+    DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
 jobs:
     call-scrape:
         runs-on: ubuntu-latest
@@ -29,7 +32,7 @@ jobs:
 
             - name: Scrape TOTO results
               env:
-                DATABASE_URL: ${{ secrets.DATABASE_URL }}
+                DATABASE_URL: env.DATABASE_URL
               run: pnpm run build
 
             - name: Commit and push
