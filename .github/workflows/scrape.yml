@@ -30,16 +30,24 @@ jobs:
             - name: Load prisma schema
               run: npx prisma generate
               
-            - name: Check db url
-              run: echo ${DATABASE_URL}
-            
-            - name: Scrape TOTO results
-              run: pnpm run build
-
-            - name: Commit and push
-              run: |
-                  git config user.name "github-actions"
-                  git config user.email "github-actions@github.com"
-                  git add .
-                  git commit -m "Automated Toto Scrape"
-                  git push
+            - name: Check secret
+            run: |
+              if [ -n "${{ secrets.DATABASE_URL }}" ]; then
+                echo "Secret exists and is not empty"
+              else
+                echo "Secret is empty or does not exist"
+              fi 
+                
+              - name: Check db url
+                run: echo ${DATABASE_URL}
+                
+              - name: Scrape TOTO results
+                run: pnpm run build
+                
+              - name: Commit and push
+                run: |
+                    git config user.name "github-actions"
+                    git config user.email "github-actions@github.com"
+                    git add .
+                    git commit -m "Automated Toto Scrape"
+                    git push
