@@ -30,15 +30,10 @@ jobs:
             - name: Load prisma schema
               run: npx prisma generate
               
-            - name: Source env
-              run: source .env
-                
             - name: Check db url
-              run: echo $DATABASE_URL
+              run: echo ${DATABASE_URL}
             
             - name: Scrape TOTO results
-              env:
-                DATABASE_URL: env.DATABASE_URL
               run: pnpm run build
 
             - name: Commit and push
