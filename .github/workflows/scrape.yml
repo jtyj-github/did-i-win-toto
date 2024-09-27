@@ -29,6 +29,9 @@ jobs:
 
             - name: Load prisma schema
               run: npx prisma generate
+            
+            - name: Check db url
+              run: echo $DATABASE_URL
 
             - name: Scrape TOTO results
               env:
