@@ -7,7 +7,7 @@ interface MainProps extends ComponentPropsWithoutRef<'main'> {}
 export const Main = ({ children, className, ...props }: MainProps) => {
     return (
         <main
-            className={cn('mx-auto flex max-w-screen-lg flex-col px-10 py-10', className)}
+            className={cn('to-black flex flex-col bg-gradient-to-b from-bg-base from-30%', className)}
             {...props}>
             {children}
         </main>

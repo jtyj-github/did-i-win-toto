@@ -20,18 +20,19 @@ export default function Home() {
 
     return (
         <Main className="gap-4">
-            <div className="flex justify-between">
-                <Heading as="h1" className="text-2xl font-bold">
-                    Home
-                </Heading>
-                <Button onClick={onOpen}>Submit my ticket</Button>
-            </div>
-            {userTickets.length > 0 && (
-                <div className="flex flex-col gap-4">
-                    <Heading as="h1" className="text-lg font-bold">
-                        My Tickets
+            <section className="mx-auto w-full max-w-screen-lg px-4 py-10 md:px-8">
+                <div className="flex justify-between">
+                    <Heading as="h1" className="text-2xl font-bold">
+                        Home
                     </Heading>
-                    <div className="space-y-4 rounded-xl border border-element-primary bg-surface-elevated p-3">
+                    <Button onClick={onOpen}>Submit my ticket</Button>
+                </div>
+                {userTickets.length > 0 && (
+                    <div className="flex flex-col gap-4">
+                        <Heading as="h1" className="text-lg font-bold">
+                            My Tickets
+                        </Heading>
+                        <div className="space-y-4 rounded-xl border border-element-primary bg-surface-elevated p-3">
                             <div>
                                 {userTickets.map((ticket, ticketIndex) => (
                                     <div
@@ -51,14 +52,15 @@ export default function Home() {
                                     </div>
                                 ))}
                             </div>
+                        </div>
                     </div>
+                )}
+                <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    {TotoCards &&
+                        TotoCards.length > 0 &&
+                        TotoCards.map((totoCard, index) => <TotoCard key={index} {...totoCard} />)}
                 </div>
-            )}
-            <div className="mt-10 flex flex-col gap-4">
-                {TotoCards &&
-                    TotoCards.length > 0 &&
-                    TotoCards.map((totoCard, index) => <TotoCard key={index} {...totoCard} />)}
-            </div>
+            </section>
             {renderModal}
         </Main>
     );

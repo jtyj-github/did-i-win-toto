@@ -37,35 +37,34 @@ export const TotoCard = ({
 }: TotoCardProps) => {
     return (
         <div
-            className="space-y-4 rounded-xl border border-border-base bg-surface-base p-3"
+            className="space-y-4 rounded-xl border border-border-base bg-surface-base px-6 py-3"
             {...props}>
             {/* Heading */}
             <div className="flex flex-col gap-2">
                 <div className="flex justify-between">
                     <Heading as="h3" className="text-xl">
-                        Draw <span className="font-bold">#{drawNumber}</span>
+                        Draw{' '}
+                        <span className="ml-1 font-bold rounded-md border border-border-base px-2 py-1 bg-surface-elevated">
+                            #{drawNumber}
+                        </span>
                     </Heading>
-                    <Heading as="h3" className="text-xl">
+                    <Heading as="h3" className="text-xs">
                         {drawDate}
                     </Heading>
                 </div>
             </div>
 
             {/* Numbers */}
-            <div className="flex justify-between px-8 py-2">
+            <div className="flex justify-between px-0 py-2 lg:px-8">
                 {winningNum.map((num, index) => (
                     <div key={index} className="grid h-8 w-8 place-content-center">
-                        <Heading
-                            as="h2"
-                            className="font-mono text-3xl font-bold text-element-primary">
+                        <Heading as="h2" className="font-mono text-3xl font-bold text-violet-400">
                             {num}
                         </Heading>
                     </div>
                 ))}
                 <div className="grid h-8 w-8 place-content-center">
-                    <Heading
-                        as="h2"
-                        className="font-mono text-3xl font-bold text-element-secondary">
+                    <Heading as="h2" className="font-mono text-3xl font-bold text-emerald-400">
                         {additionalNum}
                     </Heading>
                 </div>
