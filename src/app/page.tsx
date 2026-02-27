@@ -63,7 +63,7 @@ export default function Home() {
             <section className="mx-auto w-full max-w-screen-lg px-4 py-10 md:px-8">
                 <div className="flex justify-between">
                     <Heading as="h1" className="text-2xl font-bold">
-                        Home
+                        Did I Win Toto ?
                     </Heading>
                     <Button onClick={onOpen}>Submit my ticket</Button>
                 </div>
