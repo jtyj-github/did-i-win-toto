@@ -1,0 +1,1 @@
+export { SumDistributionChart } from './SumDistributionChart';

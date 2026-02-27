@@ -1,0 +1,1 @@
+export { NumberPairHeatmap } from './NumberPairHeatmap';

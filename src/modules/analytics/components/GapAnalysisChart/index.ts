@@ -1,0 +1,1 @@
+export { GapAnalysisChart } from './GapAnalysisChart';

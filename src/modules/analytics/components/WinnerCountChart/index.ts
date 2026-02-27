@@ -1,0 +1,1 @@
+export { WinnerCountChart } from './WinnerCountChart';
