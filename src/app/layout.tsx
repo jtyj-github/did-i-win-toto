@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import { CoreLayout } from '@/common/components/CoreLayout';
 import { inter } from '@/common/components/font/Inter';
+import { NavBar } from '@/common/components/NavBar';
 import { Toast } from '@/common/components/Toast';
 
 import '@/common/styles/globals.css';
@@ -20,7 +21,10 @@ export default function RootLayout({
     return (
         <html className={[inter.variable].join(' ')} lang="en">
             <body>
-                <CoreLayout>{children}</CoreLayout>
+                <CoreLayout>
+                    <NavBar />
+                    {children}
+                </CoreLayout>
                 <Toast />
             </body>
         </html>
