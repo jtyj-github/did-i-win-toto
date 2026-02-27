@@ -2,8 +2,9 @@ import { TotoResult } from '@prisma/client';
 import dotenv from 'dotenv';
 import puppeteer, { Browser } from 'puppeteer';
 
+import { mergeAndDedup } from '@/common/utils/mergeResults';
 import { getJSON } from '@/common/utils/processFetchedData';
-import { writeStores } from '@/common/utils/readWriteStores';
+import { readStores, writeStores } from '@/common/utils/readWriteStores';
 import totoScrape from '@/common/utils/scraper';
 
 dotenv.config();
@@ -33,9 +34,19 @@ async function processResult(browser: Browser) {
         if (isProd || isTest) {
             await writeServerFile<TotoResult>(`${fileName}`);
         }
-        const data = await totoScrape(browser);
-        notificationList = data;
-        writeStores<TotoResult>(fileName, data, 'upload');
+
+        // Read existing results from JSON file
+        const existingData = readStores<TotoResult[]>(fileName, 'upload');
+        const existingResults: TotoResult[] = Array.isArray(existingData) ? existingData : [];
+
+        // Scrape new results
+        const newResults = await totoScrape(browser);
+        notificationList = newResults;
+
+        // Merge new results with existing, dedup by drawNumber
+        const mergedResults = mergeAndDedup(existingResults, newResults);
+
+        writeStores<TotoResult>(fileName, mergedResults, 'upload');
     } catch (error) {
         console.error(error);
     }
