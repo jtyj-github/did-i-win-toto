@@ -2,7 +2,7 @@ import prisma from '@/common/lib/prisma';
 
 export const POST = async (req: Request) => {
     const { userId } = await req.json();
-    
+
     // TODO: Include catch for calling without userId
 
     try {
@@ -18,7 +18,8 @@ export const POST = async (req: Request) => {
     } catch (error) {
         return Response.json({
             message: 'Error retrieving ticket',
-            error: error
+            error,
+            data: { userTickets: [] }
         });
     }
 };
