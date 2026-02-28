@@ -17,7 +17,7 @@ const CARDS_PER_PAGE = 20;
 
 export default function Home() {
     const userId = useUser();
-    const { TotoCards } = useTotoCards();
+    const { TotoCards, loading } = useTotoCards();
     const [searchQuery, setSearchQuery] = useState('');
     const [debouncedQuery, setDebouncedQuery] = useState('');
     const [visibleCount, setVisibleCount] = useState(CARDS_PER_PAGE);
@@ -110,7 +110,15 @@ export default function Home() {
                     )}
                 </div>
                 <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    {visibleCards &&
+                    {loading &&
+                        Array.from({ length: 4 }).map((_, i) => (
+                            <div
+                                key={i}
+                                className="h-[320px] animate-pulse rounded-lg bg-blue-900/30"
+                            />
+                        ))}
+                    {!loading &&
+                        visibleCards &&
                         visibleCards.length > 0 &&
                         visibleCards.map((totoCard) => (
                             <TotoCard key={totoCard.drawNumber} {...totoCard} />

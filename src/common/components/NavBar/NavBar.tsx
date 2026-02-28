@@ -7,7 +7,8 @@ import { cn } from '@/common/utils/cn';
 
 const tabs = [
     { label: 'Draw', href: '/' },
-    { label: 'Analytics', href: '/analytics' }
+    { label: 'Analytics', href: '/analytics' },
+    { label: 'Predictions', href: '/predictions' }
 ];
 
 export const NavBar = () => {
